@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-    <th:block th:fragment="headerFragment(param1)">
+
+    <th:block th:fragment="headerFragment">
         <!--헤더 코드-->
+        <header>
             <nav class="navbar navbar-expand-lg navbar-light navbar-float">
                 <div class="container">
                     <a href="index.html" class="navbar-brand">Digi<span class="text-primary">Gram.</span></a>
@@ -12,23 +14,17 @@
 
                     <div class="navbar-collapse collapse" id="navbarContent">
                         <ul class="navbar-nav ml-lg-4 pt-3 pt-lg-0">
-                            <li class="nav-item active">
-                                <a href="index.html" class="nav-link">Home</a>
+                            <li class="nav-item">
+                                <a href="/" class="nav-link">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a href="men.html" class="nav-link">Men</a>
+                                <a href="/men" class="nav-link">Men</a>
                             </li>
                             <li class="nav-item">
-                                <a href="tech.html" class="nav-link">Tech</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="about.html" class="nav-link">About</a>
+                                <a href="/tech" class="nav-link">Tech</a>
                             </li>
                             <li class="nav-item">
                                 <a href="services.html" class="nav-link">Services</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="blog.html" class="nav-link">News</a>
                             </li>
                             <li class="nav-item">
                                 <a href="contact.html" class="nav-link">Contact</a>
@@ -36,11 +32,14 @@
                         </ul>
 
                         <div class="ml-auto">
-                            <a href="login.html" class="btn btn-outline rounded-pill">로그인</a>
+                            <a href="/login" class="btn btn-outline rounded-pill">로그인</a>
                         </div>
                     </div>
                 </div>
             </nav>
-        </div>
+
+
+        </header>
+
     </th:block>
 </html>
