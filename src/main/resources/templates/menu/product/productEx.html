@@ -1,23 +1,37 @@
 <!DOCTYPE html>
 <html lang="en" th:replace="layouts/layout :: layoutFragment(~{::main})" xmlns:th="https://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <main>
-    <div class="page-section mt-5" >
+    <div class="page-section mt-5" style="border: 1px solid #e9e8f5;">
         <div class="container">
-            <div class="text-left wow fadeInUp ml-5 pl-5">
-                <div class="subhead">Why Choose Us</div>
-                <h2 class="title-section">Your <span class="marked">Comfort</span> is Our Priority</h2>
+            <div class="text-left wow fadeInUp ">
+
+
+                <ul style="list-style: none;" class="pl-0">
+                    <li style="float:left;">
+                        <img src="/img/product/PeaceworkerLogo.jpg" width="74" alt="">
+                    </li>
+                    <li>
+                        <div class="ml-5 pl-5">
+                            <h2 class="title-section"><a href="" style="color: black;">Peace Worker</a></h2>
+                            <div>피스워커</div>
+                        </div>
+                    </li>
+                </ul>
+
             </div>
+
+
 
             <div class="row mt-5 text-center">
                 <div class="col-lg-6 py-3 wow fadeInUp">
                     <div class="display-3">
-                        <img src="/img/product/vantaBlack.jpg" width="350" alt="">
+                        <img src="/img/product/vantaBlack.jpg" width="540" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6 py-3 text-left">
-                    <div class="features pt-4 pb-2">
+                    <div class="features pt-3 pb-2">
                         <b>Vanta black</b>
-                        <h5 class="pt-5"><b>23,000원</b></h5>
+                        <h4 class="pt-5"><b>23,000원</b></h4>
                     </div>
                     <h5 class="pt-3 mb-3" style="font-size: 15px;">배송정보</h5>
                     <ul style="list-style: none;" class="pl-0">
@@ -25,17 +39,38 @@
                             <div style="width: 100px;">배송비</div>
                         </li>
                         <li>
-                            <div style="font-size: 10px;">
+                            <div style="font-size: 10px; border-bottom: 1px solid #e9e8f5;" class="pb-3">
                                 <div>해당 브랜드의 제품은 무료배송됩니다.</div>
                                 <div>제주도를 포함한 도서/산간지역은 추개 배송비 3,000원</div>
                             </div>
                         </li>
                     </ul>
+                    <div>
+                        <select class="col-lg-6 mb-3">
+                            <option value="">Size</option>
+                            <option value="size">S</option>
+                            <option value="size">M</option>
+                            <option value="size">L</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary">장바구니</button>
+                    <button class="btn btn-outline">구매하기</button>
                 </div>
-
             </div>
         </div> <!-- .container -->
     </div> <!-- .page-section -->
+
+
+    <div class="container">
+        <div class="page-section">
+            <div class="row">
+                <div class="col-lg-6">
+                    상품설명
+                    <img src="/img/product/vantaDetail.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
 
 </main>
 </html>
