@@ -1,6 +1,7 @@
 package com.goodshop.demo.domain.product;
 
 import com.goodshop.demo.domain.Category;
+import com.goodshop.demo.exception.NotEnoughStockException;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -41,5 +42,21 @@ public class Product {
 
     @ManyToMany(mappedBy = "products")
     private List<Category> categories = new ArrayList<>();
+    
+    
+    //비지니스 로직
+    /**
+     * stock증가
+     */
+    public void addStock(int quantity){
+        this.pdct_quantity += quantity;
+    }
 
+    public void removeStock(int quantity){
+        int restStock = this.pdct_quantity - quantity;
+        if(restStock < 0){
+            throw new NotEnoughStockException("need more stock");
+        }
+        this.pdct_quantity = restStock;
+    }
 }
