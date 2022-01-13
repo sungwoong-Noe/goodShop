@@ -16,6 +16,9 @@ public class User {
     @Column(name="user_id")
     private String user_id;
 
+    //회원 비밀번호
+    private String user_passwd;
+
     //회원이름
     private String user_name;
     

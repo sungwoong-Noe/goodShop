@@ -5,26 +5,38 @@
   <div class="page-section">
     <div class="container text-center">
       <h2 class="login"><b>회원가입</b></h2>
-      <form action="">
+      <form action="/join" th:object="${userForm}" method="post">
         <div class="row mb-3">
           <div class="col-sm-5 login-id">
-            <input type="text" class="form-control" placeholder="아이디">
+            <input type="text" class="form-control" th:field="*{user_id}" placeholder="아이디" th:class="${#fields.hasErrors('user_id')} ? 'form-control fieldError' : 'form-control'">
+            <p th:if="${#fields.hasErrors('user_id')}" th:errors="*{user_id}">Incorrect date</p>
           </div>
           <div class="col-sm-5 login-id">
-            <input type="password" class="form-control" placeholder="비밀번호">
+            <input type="password" class="form-control" th:field="*{user_passwd}" placeholder="비밀번호" th:class="${#fields.hasErrors('user_passwd')}? 'form-control fieldError' : 'form-control'">
+            <p th:if="${#fields.hasErrors('user_passwd')}" th:errors="*{user_passwd}">Incorrect date</p>
           </div>
           <div class="col-sm-5 login-id">
-            <input type="text" class="form-control" placeholder="이름">
+            <input type="text" class="form-control" th:field="*{user_name}" placeholder="이름" th:class="${#fields.hasErrors('user_name')}? 'form-control fieldError' : 'form-control'">
+            <p th:if="${#fields.hasErrors('user_name')}" th:errors="*{user_name}">Incorrect date</p>
           </div>
           <div class="col-sm-5 login-id">
-            <input type="text" class="form-control" placeholder="닉네임">
+            <input type="text" class="form-control" th:field="*{user_phone}" placeholder="휴대전화(-빼고)">
           </div>
-
+          <div class="col-sm-5 login-id">
+            <input type="email" class="form-control" th:field="*{user_email}" placeholder="이메일">
+          </div>
+          <div class="col-sm-5 login-id">
+            <input type="text" class="form-control" th:field="*{city}" placeholder="도시">
+          </div>
+          <div class="col-sm-5 login-id">
+            <input type="text" class="form-control" th:field="*{street}" placeholder="도로명">
+          </div>
+          <div class="col-sm-5 login-id">
+            <input type="text" class="form-control" th:field="*{zipcode}" placeholder="우편번호">
+          </div>
           <div class="col-sm-5 login-btn">
             <button class=" btn btn-primary btn-block">회원가입</button>
           </div>
-
-
         </div>
       </form>
     </div>
