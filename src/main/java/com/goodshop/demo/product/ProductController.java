@@ -35,13 +35,13 @@ public class ProductController {
     @GetMapping("/item/new")
     public String newItem(Model model){
         model.addAttribute("productForm", new ProductForm());
-        return "product/newitem";
+        return "menu/product/newitem";
     }
 
     @PostMapping("/item/new")
     public String newItem(@Valid ProductForm productForm, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
-            return "product/newitem";
+            return "menu/product/newitem";
         }
 
         Product product = new Product();
