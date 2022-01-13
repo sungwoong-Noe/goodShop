@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -19,6 +20,7 @@ public class UserRepository {
 
     //유저 등록
     public void save(User user){
+        user.setRegDate(LocalDateTime.now());
         em.persist(user);
     }
 

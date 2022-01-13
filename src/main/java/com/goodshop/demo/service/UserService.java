@@ -31,6 +31,7 @@ public class UserService {
     public String join(User user){
         validateDuplicateUser(user);// 중복 회원 검증
         userRepository.save(user);
+
         return user.getUser_id();
     }
 

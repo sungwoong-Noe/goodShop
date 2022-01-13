@@ -34,10 +34,34 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
+    //연관관계 메서드
+    public void setUser(User user){
+        this.user = user;
+        user.getOrders().add(this);
+    }
+
+    public void addOrderItem(OrderItem orderItem){
+        orderItems.add(orderItem);
+        orderItem.setO_code(this);
+    }
+
     //결제수단
     private String o_payment;
 
+    //주문시간
+    private LocalDateTime orderDate;
 
 
+    //생성 메서드
+    public static Order createOrder(User user, OrderItem... orderItems){
+        Order order = new Order();
+        order.setUser(user);
+        for(OrderItem orderItem: orderItems){
+            order.addOrderItem(orderItem);
+        }
+        order.setStatus(OrderStatus.ORDER);
+        order.setOrderDate(LocalDateTime.now());
+        return order;
+    }
 
 }

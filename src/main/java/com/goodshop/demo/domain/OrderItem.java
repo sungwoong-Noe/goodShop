@@ -27,8 +27,4 @@ public class OrderItem {
 
     //주문수량
     private int od_quantity;
-
-
-
-
 }
