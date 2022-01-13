@@ -1,4 +1,4 @@
-package com.goodshop.demo.domain;
+package com.goodshop.demo.domain.user;
 
 
 import lombok.Getter;

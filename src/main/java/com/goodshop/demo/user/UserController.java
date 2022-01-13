@@ -1,7 +1,7 @@
 package com.goodshop.demo.user;
 
-import com.goodshop.demo.domain.Address;
-import com.goodshop.demo.domain.User;
+import com.goodshop.demo.domain.user.Address;
+import com.goodshop.demo.domain.user.User;
 import com.goodshop.demo.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

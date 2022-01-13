@@ -1,0 +1,7 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="layouts/layout :: layoutFragment(~{::main})" xmlns:th="https://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<main>
+    <form action="/item/new" method="post" th:object="${productForm}">
+    </form>
+</main>

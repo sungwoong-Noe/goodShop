@@ -1,6 +1,6 @@
 package com.goodshop.demo.service;
 
-import com.goodshop.demo.domain.User;
+import com.goodshop.demo.domain.user.User;
 import com.goodshop.demo.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

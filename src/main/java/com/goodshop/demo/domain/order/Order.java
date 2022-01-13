@@ -1,10 +1,10 @@
-package com.goodshop.demo.domain;
+package com.goodshop.demo.domain.order;
 
+import com.goodshop.demo.domain.user.User;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.lang.reflect.Member;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;

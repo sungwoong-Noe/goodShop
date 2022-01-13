@@ -1,12 +1,11 @@
 package com.goodshop.demo.repository;
 
 
-import com.goodshop.demo.domain.User;
+import com.goodshop.demo.domain.user.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.time.LocalDateTime;
 import java.util.List;
 

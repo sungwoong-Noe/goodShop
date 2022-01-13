@@ -1,6 +1,5 @@
 package com.goodshop.demo.domain.product;
 
-import com.goodshop.demo.domain.Category;
 import com.goodshop.demo.exception.NotEnoughStockException;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,8 +27,11 @@ public class Product {
     //상품 재고
     private int pdct_quantity;
 
-    //상품 이미지
+    //대표이미지
     private String pdct_image;
+
+    //상세이미지
+    private String detail_image;
 
     //상세설명
     private String pdct_detail;

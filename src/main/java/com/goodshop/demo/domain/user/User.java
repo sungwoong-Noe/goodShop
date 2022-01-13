@@ -1,5 +1,6 @@
-package com.goodshop.demo.domain;
+package com.goodshop.demo.domain.user;
 
+import com.goodshop.demo.domain.order.Order;
 import lombok.Getter;
 import lombok.Setter;
 
