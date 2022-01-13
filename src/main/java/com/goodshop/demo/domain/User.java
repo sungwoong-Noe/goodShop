@@ -12,7 +12,7 @@ import java.util.List;
 @Getter @Setter
 public class User {
 
-    @Id @GeneratedValue
+    @Id
     @Column(name="user_id")
     private String user_id;
 

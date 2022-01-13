@@ -2,6 +2,7 @@ package com.goodshop.demo.repository;
 
 
 import com.goodshop.demo.domain.User;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -9,11 +10,12 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
+@RequiredArgsConstructor
 public class UserRepository {
 
 
-    @PersistenceContext //Entity매니저를 주입해준다
-    private EntityManager em;
+    //Entity매니저를 주입해준다
+    private final EntityManager em;
 
     //유저 등록
     public void save(User user){
