@@ -1,5 +1,6 @@
 package com.goodshop.demo.domain.product;
 
+import com.goodshop.demo.domain.product.UploadFile;
 import com.goodshop.demo.exception.NotEnoughStockException;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,6 +31,8 @@ public class Product {
     //대표이미지
     private String pdct_image;
 
+    private String upload_image;
+
     //상세이미지
     private String detail_image;
 
@@ -41,6 +44,10 @@ public class Product {
 
     //상품 구매수
     private int pdct_sell;
+
+
+
+
 
     @ManyToMany(mappedBy = "products")
     private List<Category> categories = new ArrayList<>();
@@ -61,4 +68,5 @@ public class Product {
         }
         this.pdct_quantity = restStock;
     }
+
 }

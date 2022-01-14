@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-public class ProdictRepository {
+public class ProductRepository {
 
     private final EntityManager em;
 
@@ -31,5 +31,7 @@ public class ProdictRepository {
         return em.createQuery("select p from Product fetch all properties", Product.class)
                 .getResultList();
     }
+
+
 
 }

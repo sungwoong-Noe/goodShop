@@ -1,7 +1,7 @@
 package com.goodshop.demo.service;
 
 import com.goodshop.demo.domain.product.Product;
-import com.goodshop.demo.repository.ProdictRepository;
+import com.goodshop.demo.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,20 +13,20 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductService {
 
-    private final ProdictRepository prodictRepository;
+    private final ProductRepository productRepository;
 
     //저장
     @Transactional
     public void saveProduct(Product pdct){
-        prodictRepository.save(pdct);
+        productRepository.save(pdct);
     }
 
     //조회
     public List<Product> findProducts(){
-        return prodictRepository.findAll();
+        return productRepository.findAll();
     }
 
     public Product findOne(Long code){
-        return prodictRepository.findOne(code);
+        return productRepository.findOne(code);
     }
 }

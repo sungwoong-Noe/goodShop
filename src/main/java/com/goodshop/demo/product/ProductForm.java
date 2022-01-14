@@ -1,10 +1,11 @@
 package com.goodshop.demo.product;
 
+import com.goodshop.demo.domain.product.UploadFile;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 
 @Getter @Setter
 public class ProductForm {
@@ -21,16 +22,19 @@ public class ProductForm {
 
     //대표이미지
 //    @NotEmpty(message = "대표이미지는 필수입니다.")
-    private String pdct_image;
+    private MultipartFile pdct_image;
+
+    private MultipartFile upload_image;
 
     //상세 이미지
 //    @NotEmpty(message = "상세이미지는 필수입니다.")
-    private String detail_image;
+    private MultipartFile detail_image;
 
     //상세설명
     private String pdct_detail;
 
     //상품구매수
     private int pdct_sell;
+
 
 }

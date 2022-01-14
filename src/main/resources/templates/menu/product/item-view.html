@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="layouts/layout :: layoutFragment(~{::main})" xmlns:th="https://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+
+<main>
+    <div class="page-section">
+        <div class="container mt-5">
+            상품명 : <span th:text="${product.getPdct_name()}">상품명</span>
+            대표이미지 : <a th:if="${product.getPdct_image()}" href="#"></a>
+
+        </div>
+    </div>
+</main>
