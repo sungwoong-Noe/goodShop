@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html th:replace="layouts/layout :: layoutFragment(~{::main})" lang="ko" xmlns:th="https://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" >
+<main>
+  <div class="page-section bg-light " style="margin-top: 90px;">
+    <div class="container">
+      <div class="owl-carousel wow fadeInUp" id="testimonials">
+        <div class="item">
+          <div class="row align-items-center">
+            <div class="col-md-6 py-3">
+              <div class="testi-image">
+                <img src="/img/product/vantaBlack.jpg" alt="">
+              </div>
+            </div>
+            <div class="col-md-3 py-3">
+              <div class="testi-content">
+                <p>Necessitatibus ipsum magni accusantium consequatur delectus a repudiandae nemo quisquam dolorum itaque, tenetur, esse optio eveniet beatae explicabo sapiente quo.</p>
+                <div class="entry-footer">
+                  <strong>Melvin Platje</strong> &mdash; <span class="text-grey">CEO Slurin Group</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="row align-items-center">
+            <div class="col-md-6 py-3">
+              <div class="testi-image">
+                <img src="/img/person/person_2.jpg" alt="">
+              </div>
+            </div>
+            <div class="col-md-6 py-3">
+              <div class="testi-content">
+                <p>Repudiandae vero assumenda sequi labore ipsum eos ducimus provident a nam vitae et, dolorum temporibus inventore quaerat consectetur quos! Animi, qui ratione?</p>
+                <div class="entry-footer">
+                  <strong>George Burke</strong> &mdash; <span class="text-grey">CEO Letro</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div> <!-- .container -->
+  </div> <!-- .page-section -->
+
+
+  <div class="page-section">
+    <div class="container">
+      <div class="text-center wow fadeInUp">
+        <div class="subhead">Why Choose Us</div>
+        <h2 class="title-section">Your <span class="marked">Comfort</span> is Our Priority</h2>
+        <div class="divider mx-auto"></div>
+      </div>
+
+      <div class="row mt-5 text-center">
+        <div th:each="product:${items}">
+          <div class="col-lg-4 py-3 wow fadeInUp">
+            <div class="display-3">
+              <img th:src="@{/img/product/} + ${product.getPdct_image}" width="350" alt="">
+            </div>
+            <div class="text-left">
+              <h5 ><b><u>피스워커</u></b></h5>
+              <a href="/item/3" th:href="@{/item/} + ${product.getPdct_code()}" th:text="${product.getPdct_name()}">name</a>
+              <p><b th:text="${product.getPdct_price()}"></b>원</p>
+              <div class="freeShip">무료배송</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> <!-- .container -->
+  </div> <!-- .page-section -->
+</main>

@@ -26,7 +26,7 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Product findOne(Long code){
-        return productRepository.findOne(code);
+    public Product findOne(Long pdct_code){
+        return productRepository.findOne(pdct_code);
     }
 }

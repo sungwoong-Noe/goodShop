@@ -22,13 +22,13 @@ public class ProductRepository {
     }
 
     //하나 조회
-    public Product findOne(Long code){
-        return em.find(Product.class, code);
+    public Product findOne(Long pdct_code){
+        return em.find(Product.class, pdct_code);
     }
 
     //전체조회
     public List<Product> findAll(){
-        return em.createQuery("select p from Product fetch all properties", Product.class)
+        return em.createQuery("select p from Product p", Product.class)
                 .getResultList();
     }
 

@@ -12,8 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -27,19 +25,12 @@ public class ProductController {
     private final ProductRepository productRepository;
     private final FileStore fileStore;
 
-    @GetMapping("/men")
-    public String men(){
-        return "/menu/men";
-    }
+    @GetMapping("/item")
+    public String item(Model model){
 
-    @GetMapping("/men/vanta")
-    public String productDetail(){
-        return "/menu/product/productEx";
-    }
+        model.addAttribute("items",productRepository.findAll());
 
-    @GetMapping("/tech")
-    public String tech(){
-        return "menu/tech";
+        return "menu/item";
     }
 
     @GetMapping("/item/new")
@@ -81,7 +72,7 @@ public class ProductController {
 
         redirectAttributes.addAttribute("pdct_code", product.getPdct_code());
 
-        return "redirect:/item/{pdct_code}";
+        return "redirect:menu/item";
     }
 
     @GetMapping("/item/{pdct_code}")
@@ -89,8 +80,10 @@ public class ProductController {
 
         Product product = productRepository.findOne(pdct_code);
         model.addAttribute("product",product);
-        return "menu/product/item-view";
+        System.out.println();
+        return "menu/product/product_detail";
     }
+
 
 
 
