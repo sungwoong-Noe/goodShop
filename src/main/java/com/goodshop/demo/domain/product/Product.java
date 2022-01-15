@@ -31,8 +31,6 @@ public class Product {
     //대표이미지
     private String pdct_image;
 
-    private String upload_image;
-
     //상세이미지
     private String detail_image;
 

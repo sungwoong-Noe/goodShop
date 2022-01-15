@@ -24,8 +24,6 @@ public class ProductForm {
 //    @NotEmpty(message = "대표이미지는 필수입니다.")
     private MultipartFile pdct_image;
 
-    private MultipartFile upload_image;
-
     //상세 이미지
 //    @NotEmpty(message = "상세이미지는 필수입니다.")
     private MultipartFile detail_image;
