@@ -1,15 +1,21 @@
 package com.goodshop.demo.user;
 
+import com.goodshop.demo.config.SessionConst;
 import com.goodshop.demo.domain.user.Address;
 import com.goodshop.demo.domain.user.User;
 import com.goodshop.demo.service.UserService;
 import lombok.RequiredArgsConstructor;
+import oracle.jdbc.proxy.annotation.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @RequiredArgsConstructor
@@ -19,9 +25,42 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/login")
-    public String login(){
+    public String login_page(Model model){
+        model.addAttribute("loginForm", new LoginForm());
         return "login/login";
     }
+
+    @PostMapping("/login")
+    public String login(@Valid @ModelAttribute LoginForm loginForm, BindingResult bindingResult, HttpServletRequest request){
+
+        if(bindingResult.hasErrors()){
+            return "login/login";
+        }
+
+        User loginUser = userService.loginForm(loginForm.getUserId(), loginForm.getUserPasswd());
+
+        if(loginForm == null){
+            bindingResult.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다.");
+             return "login/login";
+         }
+
+        HttpSession session = request.getSession();
+        session.setAttribute(SessionConst.Login_User, loginUser);
+
+        return "redirect:/";
+    }
+
+    @PostMapping("/logout")
+    public String logout(HttpServletRequest request){
+
+        HttpSession session = request.getSession(false);
+        System.out.println(request.getRequestedSessionId());
+        if(session != null){
+            session.invalidate();
+        }
+        return  "redirect:/";
+    }
+
 
     @GetMapping("/join")
     public String join_page(Model model){

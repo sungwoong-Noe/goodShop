@@ -2,6 +2,7 @@ package com.goodshop.demo.service;
 
 import com.goodshop.demo.domain.user.User;
 import com.goodshop.demo.repository.UserRepository;
+import com.goodshop.demo.user.LoginForm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,6 +12,7 @@ import java.util.List;
 //jpa 모든 로직은 트랜잭션 안에서 실행되야함.
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class UserService {
 
 
@@ -45,15 +47,20 @@ public class UserService {
 
 
     //회원 전체 조회
-    @Transactional(readOnly = true)
     public List<User> findMember(){
         return userRepository.findAll();
     }
 
     //한 건만 조회
-    @Transactional(readOnly = true)
     public User findOne(String user_id){
         return userRepository.findOne(user_id);
+    }
+
+    //로그인
+    public User loginForm(String userId, String userPasswd){
+        return userRepository.findByLoginId(userId)
+                .filter(m -> m.getUser_passwd().equals(userPasswd))
+                .orElse(null);
     }
 
 }

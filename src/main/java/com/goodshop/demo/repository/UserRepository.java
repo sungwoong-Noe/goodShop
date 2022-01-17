@@ -2,12 +2,14 @@ package com.goodshop.demo.repository;
 
 
 import com.goodshop.demo.domain.user.User;
+import com.goodshop.demo.user.LoginForm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -39,5 +41,12 @@ public class UserRepository {
         return em.createQuery("select m from User m where m.user_name = :name", User.class)
                 .setParameter("name", name)
                 .getResultList();
+    }
+
+    //로그인 조회
+    public Optional<User> findByLoginId(String userId){
+        return findAll().stream()
+                .filter(m -> m.getUser_id().equals(userId))
+                .findFirst();
     }
 }

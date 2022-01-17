@@ -32,7 +32,11 @@
                         </ul>
 
                         <div class="ml-auto">
-                            <a href="/login" class="btn btn-outline rounded-pill">로그인</a>
+
+                            <a href="/login" th:if="${#request.getCookies() == null}" class="btn btn-outline rounded-pill">로그인</a>
+                            <form th:action="@{/logout}" method="post" th:if="${#request.getCookies() != null}">
+                                <button type="submit"  class="btn btn-outline rounded-pill">로그아웃</button>
+                            </form>
                         </div>
                     </div>
                 </div>

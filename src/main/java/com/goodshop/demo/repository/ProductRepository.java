@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -15,6 +16,7 @@ public class ProductRepository {
 
     public void save(Product pdct){
         if(pdct.getPdct_code() == null){
+            pdct.setPdct_date(LocalDateTime.now());
             em.persist(pdct);
         }else{
             em.merge(pdct);
