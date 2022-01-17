@@ -6,16 +6,20 @@ import com.goodshop.demo.domain.product.childEntity.FileStore;
 import com.goodshop.demo.repository.ProductRepository;
 import com.goodshop.demo.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.io.IOException;
+import java.net.MalformedURLException;
 
 @RequiredArgsConstructor
 @Controller
@@ -66,13 +70,10 @@ public class ProductController {
 
         productService.saveProduct(product);
 
-        product.setUpload_image(attachFile.getUploadFileName());
-
-        System.out.println(product.getUpload_image());
 
         redirectAttributes.addAttribute("pdct_code", product.getPdct_code());
 
-        return "redirect:menu/item";
+        return "redirect:/item";
     }
 
     @GetMapping("/item/{pdct_code}")
@@ -86,6 +87,11 @@ public class ProductController {
 
 
 
+    @ResponseBody
+    @GetMapping("/images/{filename}")
+    public Resource downloadImage(@PathVariable String filename) throws MalformedURLException {
+       return new UrlResource("file:" + fileStore.getFullPath(filename));
+    }
 
 
 }

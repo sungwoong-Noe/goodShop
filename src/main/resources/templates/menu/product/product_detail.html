@@ -21,13 +21,13 @@
             <div class="row mt-5 text-center">
                 <div class="col-lg-6 py-3 wow fadeInUp">
                     <div class="display-3">
-                        <img th:src="@{/img/product/} + ${product.getPdct_image()}"  width="540" alt="">
+                        <img th:src="|/images/${product.getPdct_image()}|"  width="540" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6 py-3 text-left">
                     <div class="features pt-4 pb-2">
                         <b th:text="${product.getPdct_name()}">Vanta black</b>
-                        <h5 class="pt-5" th:text="${product.getPdct_price()}">23,000원</h5>
+                        <h5 class="pt-5" th:text="${product.getPdct_price()} + 원"></h5>
                     </div>
                     <h5 class="pt-3 mb-3" style="font-size: 15px;">배송정보</h5>
                     <ul style="list-style: none;" class="pl-0">
@@ -60,7 +60,7 @@
                 <div class="row">
                     <div class="col-lg-6">
                         상품설명
-                        <img th:src="@{/img/product/} + ${product.getDetail_image()}"  alt="">
+                        <img th:src="|/images/${product.getDetail_image()}|"  alt="">
                     </div>
                 </div>
             </div>

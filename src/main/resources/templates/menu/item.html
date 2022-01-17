@@ -8,7 +8,7 @@
           <div class="row align-items-center">
             <div class="col-md-6 py-3">
               <div class="testi-image">
-                <img src="/img/product/vantaBlack.jpg" alt="">
+                <img src="/img/product/vantaBlack.jpg" alt="" >
               </div>
             </div>
             <div class="col-md-3 py-3">
@@ -57,12 +57,12 @@
         <div th:each="product:${items}">
           <div class="col-lg-4 py-3 wow fadeInUp">
             <div class="display-3">
-              <img th:src="@{/img/product/} + ${product.getPdct_image}" width="350" alt="">
+              <img th:src="|/images/${product.getPdct_image}|" width="350" alt="">
             </div>
             <div class="text-left">
               <h5 ><b><u>피스워커</u></b></h5>
-              <a href="/item/3" th:href="@{/item/} + ${product.getPdct_code()}" th:text="${product.getPdct_name()}">name</a>
-              <p><b th:text="${product.getPdct_price()}"></b>원</p>
+              <a th:href="@{/item/} + ${product.getPdct_code()}" th:text="${product.getPdct_name()}">name</a>
+              <p th:text="${product.getPdct_price()} + 원"></p>
               <div class="freeShip">무료배송</div>
             </div>
           </div>

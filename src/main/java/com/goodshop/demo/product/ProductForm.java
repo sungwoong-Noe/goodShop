@@ -1,6 +1,5 @@
 package com.goodshop.demo.product;
 
-import com.goodshop.demo.domain.product.UploadFile;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;

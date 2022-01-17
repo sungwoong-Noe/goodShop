@@ -1,6 +1,5 @@
 package com.goodshop.demo.domain.product;
 
-import com.goodshop.demo.domain.product.UploadFile;
 import com.goodshop.demo.exception.NotEnoughStockException;
 import lombok.Getter;
 import lombok.Setter;
