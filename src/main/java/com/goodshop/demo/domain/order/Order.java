@@ -27,7 +27,7 @@ public class Order {
     private User user;
 
     //주문 상품
-    @OneToMany(mappedBy = "o_code")
+    @OneToMany(mappedBy = "o_code", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
 
     //주문상태 [Order, Cancel]
@@ -50,6 +50,8 @@ public class Order {
 
     //주문시간
     private LocalDateTime orderDate;
+
+
 
 
     //생성 메서드

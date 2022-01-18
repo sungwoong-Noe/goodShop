@@ -28,6 +28,8 @@ public class OrderItem {
     //주문수량
     private int od_quantity;
 
+    protected OrderItem() {
+    }
 
     //생성 메서드
     public static OrderItem createOrderItem(Product product, int od_price, int od_quantity){
