@@ -32,7 +32,6 @@ public class ProductController {
 
     private final ProductService productService;
     private final ProductRepository productRepository;
-    private final UserService userService;
     private final FileStore fileStore;
 
     @GetMapping("/item")
@@ -60,8 +59,6 @@ public class ProductController {
 
         UploadFile attachFile = fileStore.storeFile(productForm.getPdct_image());
         UploadFile attachFile2 = fileStore.storeFile(productForm.getDetail_image());
-
-
 
 
         System.out.println(productForm.getPdct_image());
