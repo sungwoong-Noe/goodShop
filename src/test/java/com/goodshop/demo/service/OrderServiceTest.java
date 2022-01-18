@@ -5,8 +5,10 @@ import com.goodshop.demo.domain.order.OrderStatus;
 import com.goodshop.demo.domain.product.Product;
 import com.goodshop.demo.domain.user.Address;
 import com.goodshop.demo.domain.user.User;
+import com.goodshop.demo.exception.NotEnoughStockException;
 import com.goodshop.demo.repository.OrderRepository;
 import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +17,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -31,17 +31,9 @@ class OrderServiceTest {
     @Test
     public void 상품주문() throws Exception{
         //given
-        User user = new User();
-        user.setUser_id("woong423");
-        user.setUser_name("회원1");
-        user.setAddress(new Address("서울", "강남로", "23333"));
-        em.persist(user);
+        User user = createUser("woong423","홍길동");
 
-        Product product = new Product();
-        product.setPdct_name("에어팟맥스");
-        product.setPdct_price(400000);
-        product.setPdct_quantity(20);
-        em.persist(product);
+        Product product = createProduct("에어팟맥스", 20, 400000);
         int order_count = 2;
 
         //when
@@ -57,22 +49,68 @@ class OrderServiceTest {
         Assert.assertEquals("주문 수량 만큼 재고가 줄어야 한다. ", 18, product.getPdct_quantity());
     }
 
-    
+
+
     @Test
     public void 주문취소() throws  Exception{
         //given
+        User user = createUser("woong423", "홍길동");
+        Product product = createProduct("에어팟맥스", 10, 100000);
+
+        int orderCount = 2;
+        Long orderId = orderService.order(user.getUser_id(), product.getPdct_code(), orderCount);
 
         //when
+        orderService.cancelOrder(orderId);
 
         //then
+        Order getOrder = orderRepository.findOne(orderId);
+        Assert.assertEquals("주문 취소시 상태는 Cancel", OrderStatus.CANCEL, getOrder.getStatus());
+        Assert.assertEquals("주문시 취소된 상품은 그만큼 재고가 증가해야 한다.", 10, product.getPdct_quantity());
     }
 
-    @Test
+
+    @Test()
     public void 재고수량초과() throws  Exception{
         //given
+        User user = createUser("woong423","홍길동");
+        Product product = createProduct("에어팟맥스", 20, 400000);
+
+        int orderCount = 21;
 
         //when
 
+
         //then
+        NotEnoughStockException ex = Assertions.assertThrows(NotEnoughStockException.class, () ->{
+            orderService.order(user.getUser_id(), product.getPdct_code(), orderCount);
+        });
+        Assertions.assertEquals(ex.getMessage(), "need more stock");
     }
+
+
+
+
+
+    private Product createProduct(String pdct_name, int pdct_quantity, int pdct_price) {
+        Product product = new Product();
+        product.setPdct_name(pdct_name);
+        product.setPdct_price(pdct_price);
+        product.setPdct_quantity(pdct_quantity);
+        em.persist(product);
+        return product;
+    }
+
+    private User createUser( String userId,String name) {
+        User user = new User();
+        user.setUser_id(userId);
+        user.setUser_name(name);
+        user.setAddress(new Address("서울", "강남로", "23333"));
+        em.persist(user);
+        return user;
+    }
+
 }
+
+
+
