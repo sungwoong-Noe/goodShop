@@ -1,5 +1,5 @@
 package com.goodshop.demo.config;
 
-public interface SessionConst {
-    String Login_User = "loginUser";
+public class SessionConst {
+    public static final String Login_User = "loginUser";
 }

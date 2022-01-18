@@ -25,8 +25,9 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/login")
-    public String login_page(Model model){
-        model.addAttribute("loginForm", new LoginForm());
+    public String login_page(@ModelAttribute("loginForm") LoginForm loginForm, Model model){
+
+
         return "login/login";
     }
 

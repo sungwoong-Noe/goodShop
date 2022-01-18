@@ -1,22 +1,27 @@
 package com.goodshop.demo.product;
 
+import com.goodshop.demo.config.SessionConst;
 import com.goodshop.demo.domain.product.UploadFile;
 import com.goodshop.demo.domain.product.Product;
 import com.goodshop.demo.domain.product.childEntity.FileStore;
+import com.goodshop.demo.domain.user.User;
 import com.goodshop.demo.repository.ProductRepository;
 import com.goodshop.demo.service.ProductService;
+import com.goodshop.demo.service.UserService;
+import com.goodshop.demo.user.LoginForm;
 import lombok.RequiredArgsConstructor;
+import oracle.jdbc.logging.annotations.Log;
+import org.apache.catalina.session.StandardSession;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -27,10 +32,12 @@ public class ProductController {
 
     private final ProductService productService;
     private final ProductRepository productRepository;
+    private final UserService userService;
     private final FileStore fileStore;
 
     @GetMapping("/item")
     public String item(Model model){
+
 
         model.addAttribute("items",productRepository.findAll());
 
@@ -39,7 +46,9 @@ public class ProductController {
 
     @GetMapping("/item/new")
     public String newItem(Model model){
+
         model.addAttribute("productForm", new ProductForm());
+
         return "menu/product/newitem";
     }
 

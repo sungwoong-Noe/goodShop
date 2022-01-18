@@ -42,6 +42,9 @@ public class Product {
     //상품 구매수
     private int pdct_sell;
 
+    //판매자
+    private String seller;
+
 
 
 

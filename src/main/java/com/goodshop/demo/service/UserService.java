@@ -20,8 +20,6 @@ public class UserService {
 //    public void setUserRepository(UserRepository userRepository) {
 //        this.userRepository = userRepository;
 //    }
-
-
     private final UserRepository userRepository;
     //생성자 인젝션
 //    public UserService(UserRepository userRepository) {
@@ -62,5 +60,7 @@ public class UserService {
                 .filter(m -> m.getUser_passwd().equals(userPasswd))
                 .orElse(null);
     }
+
+
 
 }

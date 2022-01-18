@@ -53,6 +53,9 @@ public class Order {
 
 
     //생성 메서드
+    /**
+     * 주문 생성을 여기서 완성 짓는다, 유저 정보, 상품 정보
+     */
     public static Order createOrder(User user, OrderItem... orderItems){
         Order order = new Order();
         order.setUser(user);
@@ -64,4 +67,26 @@ public class Order {
         return order;
     }
 
+    //비지니스 로직
+    /**
+     * 주문 취소
+     */
+    public void cancel(){
+        this.setStatus(OrderStatus.CANCEL);
+        for(OrderItem orderItem : orderItems){
+            orderItem.cancel();
+        }
+    }
+
+    //조회로직
+    /**
+     * 전체 주문가격 조회
+     */
+    public int getTotalPrice(){
+        int totalPrice = 0;
+        for(OrderItem orderItem : orderItems){
+            totalPrice += orderItem.getTotalPrice();
+        }
+        return totalPrice;
+    }
 }
