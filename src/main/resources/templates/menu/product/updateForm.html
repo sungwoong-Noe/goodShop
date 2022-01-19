@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="layouts/layout :: layoutFragment(~{::main})" xmlns:th="https://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<main>
+    <div class="page-section">
+        <div class="container">
+            <h2 class="login"><b>상품수정</b></h2>
+            <form method="post" th:object="${product}" enctype="multipart/form-data">
+                <input type="hidden" th:field="*{pdct_code}">
+                <div class="row mb-3">
+                    <div class="col-sm-4 login-id">
+                        <input type="text" class="form-control" th:field="*{pdct_name}" th:placeholder="상품이름" th:class="${#fields.hasErrors('pdct_name')} ? 'form-control fieldError' : 'form-control'">
+                        <p th:if="${#fields.hasErrors('pdct_name')}" th:errors="*{pdct_name}">Incorrect date</p>
+                    </div>
+                    <div class="col-sm-4 login-id">
+                        <input type="text" class="form-control" th:field="*{pdct_price}" th:placeholder="상품가격"   th:class="${#fields.hasErrors('pdct_price')}  ? 'form-control fieldError' : 'form-control'">
+                        <p th:if="${#fields.hasErrors('pdct_price')}" th:errors="*{pdct_price}">Incorrect date</p>
+                    </div>
+                    <div class="col-sm-4 login-id">
+                        <input type="text" class="form-control" th:field="*{pdct_quantity}" th:placeholder="상품재고"  th:class="${#fields.hasErrors('pdct_quantity')}  ? 'form-control fieldError' : 'form-control'">
+                        <p th:if="${#fields.hasErrors('pdct_quantity')}" th:errors="*{pdct_quantity}">Incorrect date</p>
+                    </div>
+                    <div class="col-sm-4 login-id">
+                        <img th:src="|/images/${image.getPdct_image()}|" height="200" alt="">
+                        <input type="file" class="form-control" th:field="*{pdct_image}" th:class="${#fields.hasErrors('pdct_image')}  ? 'form-control fieldError' : 'form-control'">
+                        <p th:if="${#fields.hasErrors('pdct_image')}" th:errors="*{pdct_image}">Incorrect date</p>
+                    </div>
+                    <div class="col-sm-4 login-id">
+                        <img th:src="|/images/${image.getDetail_image()}|" height="400" alt="">
+                        <input type="file" class="form-control" th:field="*{detail_image}" th:placeholder="상세이미지" th:class="${#fields.hasErrors('detail_image')}  ? 'form-control fieldError' : 'form-control'">
+                        <p th:if="${#fields.hasErrors('detail_image')}" th:errors="*{detail_image}">Incorrect date</p>
+                    </div>
+                    <div class="col-sm-4 login-id">
+                        <input type="text" class="form-control" th:field="*{pdct_detail}" th:placeholder="상세설명" th:class="${#fields.hasErrors('pdct_detail')}  ? 'form-control fieldError' : 'form-control'">
+                        <p th:if="${#fields.hasErrors('pdct_detail')}" th:errors="*{pdct_detail}">Incorrect date</p>
+                    </div>
+                    <button class="btn btn-primary" type="submit">제출</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>

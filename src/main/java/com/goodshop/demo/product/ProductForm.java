@@ -13,6 +13,9 @@ public class ProductForm {
     @NotEmpty(message = "상품이름은 필수입니다.")
     private String pdct_name;
 
+    //상품코드
+    private Long pdct_code;
+
     //상품 가격
     private int pdct_price;
 
@@ -20,11 +23,9 @@ public class ProductForm {
     private int pdct_quantity;
 
     //대표이미지
-    @NotEmpty(message = "대표이미지는 필수입니다.")
     private MultipartFile pdct_image;
 
     //상세 이미지
-    @NotEmpty(message = "상세이미지는 필수입니다.")
     private MultipartFile detail_image;
 
     //상세설명

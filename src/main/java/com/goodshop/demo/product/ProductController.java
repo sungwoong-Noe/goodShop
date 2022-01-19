@@ -25,6 +25,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
@@ -60,10 +61,6 @@ public class ProductController {
         UploadFile attachFile = fileStore.storeFile(productForm.getPdct_image());
         UploadFile attachFile2 = fileStore.storeFile(productForm.getDetail_image());
 
-
-        System.out.println(productForm.getPdct_image());
-        System.out.println(productForm.getDetail_image());
-
         Product product = new Product();
         product.setPdct_name(productForm.getPdct_name());
         product.setPdct_price(productForm.getPdct_price());
@@ -97,6 +94,48 @@ public class ProductController {
     @GetMapping("/images/{filename}")
     public Resource downloadImage(@PathVariable String filename) throws MalformedURLException {
        return new UrlResource("file:" + fileStore.getFullPath(filename));
+    }
+
+    @GetMapping("/item/{pdct_code}/edit")
+    public String updateProductForm(@PathVariable("pdct_code") Long pdct_code ,Model model){
+
+        Product product = (Product) productService.findOne(pdct_code);
+
+        ProductForm form = new ProductForm();
+        form.setPdct_code(pdct_code);
+        form.setPdct_name(product.getPdct_name());
+        form.setPdct_price(product.getPdct_price());
+        form.setPdct_quantity(product.getPdct_quantity());
+        form.setPdct_detail(product.getPdct_detail());
+
+
+        model.addAttribute("image" ,product);
+        model.addAttribute("product", form);
+        return "menu/product/updateForm";
+    }
+
+    @PostMapping("/item/{pdct_code}/edit")
+    public String updateProduct(@PathVariable Long pdct_code, @ModelAttribute("form") ProductForm form, BindingResult bindingResult) throws IOException {
+        if(bindingResult.hasErrors()){
+            return "redirect:/item/{pdct_code}/edit";
+        }
+
+        UploadFile updateImage = fileStore.storeFile(form.getPdct_image());
+        UploadFile updateImage2 = fileStore.storeFile(form.getDetail_image());
+
+        Product product = new Product();
+        product.setPdct_code(form.getPdct_code());
+        product.setPdct_name(form.getPdct_name());
+        product.setPdct_price(form.getPdct_price());
+        product.setPdct_quantity(form.getPdct_quantity());
+        product.setPdct_detail(form.getPdct_detail());
+
+        product.setPdct_image(updateImage.getStoreFileName());
+        product.setDetail_image(updateImage2.getStoreFileName());
+
+        productService.saveProduct(product);
+
+        return "redirect:/item/{pdct_code}";
     }
 
 
