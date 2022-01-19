@@ -25,30 +25,33 @@
                     </div>
                 </div>
                 <div class="col-lg-6 py-3 text-left">
-                    <div class="features pt-4 pb-2">
-                        <b th:text="${product.getPdct_name()}">Vanta black</b>
-                        <h5 class="pt-5" th:text="${product.getPdct_price()} + 원"></h5>
-                    </div>
-                    <h5 class="pt-3 mb-3" style="font-size: 15px;">배송정보</h5>
-                    <ul style="list-style: none;" class="pl-0">
-                        <li style="float:left;">
-                            <div style="width: 100px;">배송비</div>
-                        </li>
-                        <li>
-                            <div style="font-size: 10px;">
-                                <div>해당 브랜드의 제품은 무료배송됩니다.</div>
-                                <div>제주도를 포함한 도서/산간지역은 추개 배송비 3,000원</div>
+                    <form th:href="@{/order}" method="post">
+                            <input type="hidden" th:value="${product.getPdct_code()}" name="pdct_code">
+                            <div class="features pt-4 pb-2">
+                                <b th:text="${product.getPdct_name()}">상품이름</b>
+                                <h5 class="pt-5" th:text="${product.getPdct_price()} + 원"> 상품가격</h5>
                             </div>
-                        </li>
-                    </ul>
-                    <div>
-                        <button type ="button" onclick="count('plus');">+</button>
-                        <input type="text" id="pdct_quantity" th:name="*{product.pdct_quantity}" th:value="1" readonly="readonly" style="text-align:center;"/>
-                        <button type="button" onclick="count('minus');">-</button>
-                    </div>
-                        <button class="btn btn-primary">장바구니</button>
-                        <button class="btn btn-outline">구매하기</button>
-                        <a th:href="@{/item/} + ${product.getPdct_code} + @{/edit}"> 수정</a>
+                            <h5 class="pt-3 mb-3" style="font-size: 15px;">배송정보</h5>
+                            <ul style="list-style: none;" class="pl-0">
+                                <li style="float:left;">
+                                    <div style="width: 100px;">배송비</div>
+                                </li>
+                                <li>
+                                    <div style="font-size: 10px;">
+                                        <div>해당 브랜드의 제품은 무료배송됩니다.</div>
+                                        <div>제주도를 포함한 도서/산간지역은 추개 배송비 3,000원</div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div>
+                                <button type ="button" onclick="count('plus');">+</button>
+                                <input type="text" id="pdct_quantity" name="pdct_quantity" th:value="1" readonly="readonly" style="text-align:center;"/>
+                                <button type="button" onclick="count('minus');">-</button>
+                            </div>
+                            <button class="btn btn-primary">장바구니</button>
+                            <button class="btn btn-outline" type="submit">구매하기</button>
+                            <a th:href="@{/item/} + ${product.getPdct_code} + @{/edit}"> 수정</a>
+                        </form>
                     </div>
                 </div>
             </div>

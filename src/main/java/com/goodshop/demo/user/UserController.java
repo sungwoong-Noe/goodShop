@@ -1,18 +1,16 @@
 package com.goodshop.demo.user;
 
-import com.goodshop.demo.config.SessionConst;
 import com.goodshop.demo.domain.user.Address;
 import com.goodshop.demo.domain.user.User;
 import com.goodshop.demo.service.UserService;
+import com.goodshop.demo.session.SessionConst;
 import lombok.RequiredArgsConstructor;
-import oracle.jdbc.proxy.annotation.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -40,13 +38,19 @@ public class UserController {
 
         User loginUser = userService.loginForm(loginForm.getUserId(), loginForm.getUserPasswd());
 
-        if(loginForm == null){
+        if(loginUser == null){
             bindingResult.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다.");
              return "login/login";
          }
 
+        //로그인 성공 TODO
         HttpSession session = request.getSession();
         session.setAttribute(SessionConst.Login_User, loginUser);
+
+
+
+
+
 
         return "redirect:/";
     }

@@ -5,6 +5,7 @@ import com.goodshop.demo.domain.order.OrderItem;
 import com.goodshop.demo.domain.product.Product;
 import com.goodshop.demo.domain.user.User;
 import com.goodshop.demo.repository.OrderRepository;
+import com.goodshop.demo.repository.OrderSearch;
 import com.goodshop.demo.repository.ProductRepository;
 import com.goodshop.demo.repository.UserRepository;
 import lombok.RequiredArgsConstructor;

@@ -8,11 +8,16 @@
             <h2 class="login"><b>로그인</b></h2>
             <form th:action="@{/login}"   th:object="${loginForm}" method="post">
                 <div class="row mb-3">
+                    <div class="col-sm-5 login-id" th:if="${#fields.hasGlobalErrors()}">
+                        <p class="field-error" th:each="err:${#fields.globalErrors()}" th:text="${err}"></p>
+                    </div>
                     <div class="col-sm-5 login-id">
                         <input type="text" th:field="*{userId}" class="form-control" placeholder="아이디">
+                        <div class="field-error" th:errors="*{userId}"></div>
                     </div>
                     <div class="col-sm-5 login-password">
                         <input type="password" th:field="*{userPasswd}"  class="form-control" placeholder="비밀번호">
+                        <div class="field-error" th:errors="*{userPasswd}"></div>
                     </div>
                     <div class="col-sm-5 login-btn">
                         <button type="submit" class=" btn btn-primary btn-block">로그인하기</button>
