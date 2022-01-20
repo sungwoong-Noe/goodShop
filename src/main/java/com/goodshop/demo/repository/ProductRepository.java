@@ -14,6 +14,7 @@ public class ProductRepository {
 
     private final EntityManager em;
 
+    //준영속 Entity 영속으로 변경 -> merge 방식
     public void save(Product pdct){
         if(pdct.getPdct_code() == null){
             pdct.setPdct_date(LocalDateTime.now());

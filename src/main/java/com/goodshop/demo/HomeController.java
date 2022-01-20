@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -17,24 +18,13 @@ import javax.websocket.Session;
 public class HomeController {
 
     @RequestMapping("/")
-    public String home(HttpServletRequest request, Model model){
-        HttpSession session = request.getSession(false);
+    public String home(@SessionAttribute(name = SessionConst.Login_User, required = false) User user, Model model){
 
-        if(session == null){
-            return "login/login";
+        if(user == null){
+            return "index";
         }
 
-        User loginUser = (User)session.getAttribute(SessionConst.Login_User);
-
-
-
-        if(loginUser == null){
-            return "login/login";
-        }
-
-        System.out.println(loginUser.getUser_id());
-        model.addAttribute("login", loginUser);
-
+        model.addAttribute("login", user);
         return "index";
     }
 

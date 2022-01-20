@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.SessionCookieConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import javax.websocket.Session;
 
 @RequiredArgsConstructor
 @Controller
@@ -47,11 +49,6 @@ public class UserController {
         HttpSession session = request.getSession();
         session.setAttribute(SessionConst.Login_User, loginUser);
 
-
-
-
-
-
         return "redirect:/";
     }
 
@@ -59,10 +56,11 @@ public class UserController {
     public String logout(HttpServletRequest request){
 
         HttpSession session = request.getSession(false);
-        System.out.println(request.getRequestedSessionId());
-        if(session != null){
-            session.invalidate();
+
+        if(session != null) {
+            request.getSession().invalidate();
         }
+
         return  "redirect:/";
     }
 

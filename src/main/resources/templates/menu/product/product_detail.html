@@ -25,8 +25,12 @@
                     </div>
                 </div>
                 <div class="col-lg-6 py-3 text-left">
-                    <form th:href="@{/order}" method="post">
-                            <input type="hidden" th:value="${product.getPdct_code()}" name="pdct_code">
+                    <form th:href="@{/order}" method="post" name="pdct_form">
+                            <div th:if="${session.loginUser != null}">
+                                <input type="hidden" th:value="${product.getPdct_code()}" name="pdct_code">
+                                <input type="hidden"  th:value="${session.loginUser.getUser_id()}"></input>
+                            </div>
+
                             <div class="features pt-4 pb-2">
                                 <b th:text="${product.getPdct_name()}">상품이름</b>
                                 <h5 class="pt-5" th:text="${product.getPdct_price()} + 원"> 상품가격</h5>
@@ -43,13 +47,13 @@
                                     </div>
                                 </li>
                             </ul>
-                            <div>
+                            <div class="mb-5">
                                 <button type ="button" onclick="count('plus');">+</button>
                                 <input type="text" id="pdct_quantity" name="pdct_quantity" th:value="1" readonly="readonly" style="text-align:center;"/>
                                 <button type="button" onclick="count('minus');">-</button>
                             </div>
                             <button class="btn btn-primary">장바구니</button>
-                            <button class="btn btn-outline" type="submit">구매하기</button>
+                            <button class="btn btn-outline" th:onclick="buyButton(${session.loginUser.getUser_id()})">구매하기</button>
                             <a th:href="@{/item/} + ${product.getPdct_code} + @{/edit}"> 수정</a>
                         </form>
                     </div>
@@ -88,8 +92,17 @@
         }
 
         resultElement.value = number;
+    }
+
+    function buyButton(loginUser){
 
 
+
+        if(loginUser === null){
+            alert("로그인 후 구매해주세요");
+        }else if(loginUser === null){
+            document.pdct_form.submit();
+        }
     }
 
 </script>

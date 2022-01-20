@@ -38,6 +38,8 @@ public class ProductController {
     @GetMapping("/item/new")
     public String newItem(Model model){
 
+
+
         model.addAttribute("productForm", new ProductForm());
 
         return "menu/product/newitem";
