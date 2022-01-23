@@ -45,9 +45,6 @@ public class Order {
         orderItem.setO_code(this);
     }
 
-    //결제수단
-    private String o_payment;
-
     //주문시간
     private LocalDateTime orderDate;
 

@@ -43,4 +43,9 @@ public class OrderController {
         return "redirect:/orders";
     }
 
+    @GetMapping("/orderPage")
+    public String order(){
+        return "order/orderPage";
+    }
+
 }

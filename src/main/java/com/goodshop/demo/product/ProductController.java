@@ -60,6 +60,7 @@ public class ProductController {
         product.setPdct_quantity(productForm.getPdct_quantity());
         product.setPdct_detail(productForm.getPdct_detail());
         product.setPdct_sell(productForm.getPdct_sell());
+        product.setSeller(productForm.getSeller());
 
         product.setPdct_image(attachFile.getStoreFileName());
         product.setDetail_image(attachFile2.getStoreFileName());
@@ -73,7 +74,7 @@ public class ProductController {
     }
 
     @GetMapping("/item/{pdct_code}")
-    public String items(@PathVariable Long pdct_code, Model model){
+    public String items(@PathVariable Long pdct_code, Model model) throws Exception{
 
         Product product = productRepository.findOne(pdct_code);
         model.addAttribute("product",product);

@@ -54,7 +54,8 @@
                             </div>
                             <button class="btn btn-primary">장바구니</button>
                             <button class="btn btn-outline" th:onclick="buyButton(${session.loginUser.getUser_id()})">구매하기</button>
-                            <a th:href="@{/item/} + ${product.getPdct_code} + @{/edit}"> 수정</a>
+                            <a th:if="${session.loginUser.getUser_name() == product.getSeller()}" th:href="@{/item/} + ${product.getPdct_code} + @{/edit}"> 수정</a>
+
                         </form>
                     </div>
                 </div>
@@ -95,8 +96,6 @@
     }
 
     function buyButton(loginUser){
-
-
 
         if(loginUser === null){
             alert("로그인 후 구매해주세요");
