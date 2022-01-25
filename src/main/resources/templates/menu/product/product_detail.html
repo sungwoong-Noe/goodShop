@@ -6,12 +6,11 @@
             <div class="text-left wow fadeInUp ">
                 <ul style="list-style: none;" class="pl-0">
                     <li style="float:left;">
-                        <img src="/img/brand/PeaceworkerLogo.jpg" width="74" alt="">
+
                     </li>
                     <li>
                         <div class="ml-5 pl-5">
-                            <h2 class="title-section"><a href="" style="color: black;">Peace Worker</a></h2>
-                            <div>피스워커</div>
+
                         </div>
                     </li>
                 </ul>
@@ -27,7 +26,7 @@
                 <div class="col-lg-6 py-3 text-left">
                     <form th:href="@{/order}" method="post" name="pdct_form">
                             <div th:if="${session.loginUser != null}">
-                                <input type="hidden" th:value="${product.getPdct_code()}" name="pdct_code">
+                                <input type="hidden" th:value="${product.getPdct_code()}" name="pdct_code" id="pdct_code">
                                 <input type="hidden"  th:value="${session.loginUser.getUser_id()}"></input>
                             </div>
 
@@ -53,8 +52,8 @@
                                 <button type="button" onclick="count('minus');">-</button>
                             </div>
                             <button class="btn btn-primary">장바구니</button>
-                            <button class="btn btn-outline" th:onclick="buyButton(${session.loginUser.getUser_id()})">구매하기</button>
-                            <a th:if="${session.loginUser.getUser_name() == product.getSeller()}" th:href="@{/item/} + ${product.getPdct_code} + @{/edit}"> 수정</a>
+                            <a class="btn btn-outline" th:onclick="|order();|" >구매하기</a>
+                            <a th:if="${session.loginUser?.getUser_name() == product.getSeller()}" th:href="@{/item/} + ${product.getPdct_code} + @{/edit}"> 수정</a>
 
                         </form>
                     </div>
@@ -75,7 +74,7 @@
 
 </main>
 </html>
-<script>
+<script th:inline="javascript">
     function count(type){
         const resultElement = document.getElementById('pdct_quantity');
 
@@ -95,12 +94,19 @@
         resultElement.value = number;
     }
 
-    function buyButton(loginUser){
+    function order(){
 
-        if(loginUser === null){
-            alert("로그인 후 구매해주세요");
-        }else if(loginUser === null){
-            document.pdct_form.submit();
+        var sessionUser = [[${session.loginUser?.getUser_id()}]];
+        var quantity = document.getElementById('pdct_quantity').value;
+        var pdct_code = [[${product.getPdct_code()}]];
+
+
+        console.log(quantity);
+
+        if(sessionUser == null){
+            alert(quantity);
+        }else if(sessionUser != null){
+            location.href="http://localhost:8080/orderPage" + "?qa=" + quantity + "&code=" + pdct_code;
         }
     }
 

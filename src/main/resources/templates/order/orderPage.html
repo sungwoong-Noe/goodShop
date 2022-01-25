@@ -13,15 +13,15 @@
                         </div>
                         <div>
                             <label for="city">주소</label>
-                            <input type="text" id="city" class="form-control">
+                            <input type="text" id="city" class="form-control" th:value="${session.loginUser.getAddress().getCity()}">
                         </div>
                         <div>
                             <label for="street">도로명</label>
-                            <input type="text" id="street" class="form-control">
+                            <input type="text" id="street" class="form-control" th:value="${session.loginUser.getAddress().getStreet()}">
                         </div>
                         <div>
                             <label for="zipcode">우편번호</label>
-                            <input type="text" id="zipcode" class="form-control">
+                            <input type="text" id="zipcode" class="form-control" th:value="${session.loginUser.getAddress().getZipcode()}">
                         </div>
                     </form>
                 </div>
@@ -29,17 +29,18 @@
                 <div class="col-lg-5" style="border: solid 3px; padding: 14px;">
                     <p style="border-bottom: solid 3px;">주문정보</p>
                     <div class="row" style="padding: 20px;">
-                        <img src="../assets/img/product/vantaBlack.jpg" alt="" width="200">
-                        <p style="margin: 10px;">vanta black/1개</p>
+                        <img th:src="|/images/${product.getPdct_image()}|" alt="" width="200">
+                        <p style="margin: 10px;" th:text="${product.getPdct_name()}"></p>
+                        <p style="margin: 10px;" th:text="${quantity}">개</p>
                     </div>
                     <p style="border-top: solid 3px;"></p>
                     <div class="row" >
                         <p class="col-lg-9">총 상품금액</p>
-                        <p class=""> 30,000원</p>
+                        <p class="" th:text="${product.getPdct_price()}"></p>
                     </div>
                     <div class="row ">
-                        <p class="col-md-8" style="font-weight: bold;">총 결제금액</p>
-                        <p style="font-weight: 900; font-size: x-large; padding-left:5px; color: darkorange;">30,000원</p>
+                        <p class="col-md-8" style="font-weight: bold; font-size: x-large">총 결제금액</p>
+                        <p style="font-weight: 900; font-size: x-large; padding-left:5px; color: darkorange;" th:text="${orderPrice}"></p>
                     </div>
                     <p style="border-top: solid 3px;"></p>
                     <div class="col-sm-12" style="padding:0px">
