@@ -13,12 +13,11 @@ import java.util.List;
 @Table(name="order_info")
 @Getter @Setter
 public class Order {
-    @Id @GeneratedValue
-    @Column(name="o_code")
-    private Long id;
 
-    //주문일
-    private LocalDateTime o_date;    //자바 8부터 지원되는 날짜 클래스
+    @Id
+    @GeneratedValue
+    @Column(name="o_code")
+    private Long o_code;
 
     //다대일 관계
     //회원id
@@ -27,7 +26,7 @@ public class Order {
     private User user;
 
     //주문 상품
-    @OneToMany(mappedBy = "o_code", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
 
     //주문상태 [Order, Cancel]
@@ -42,7 +41,7 @@ public class Order {
 
     public void addOrderItem(OrderItem orderItem){
         orderItems.add(orderItem);
-        orderItem.setO_code(this);
+        orderItem.setOrder(this);
     }
 
     //주문시간

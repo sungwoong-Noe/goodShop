@@ -28,6 +28,7 @@ public class OrderService {
      */
     @Transactional
     public Long order(String userId, Long pdct_code, int od_quantity){
+
         User user = userRepository.findOne(userId);
         Product product = productRepository.findOne(pdct_code);
 
@@ -40,7 +41,7 @@ public class OrderService {
         //주문 저장
         orderRepository.save(order);
 
-        return order.getId();
+        return order.getO_code();
     }
 
     /**

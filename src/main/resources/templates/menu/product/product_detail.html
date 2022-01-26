@@ -104,7 +104,7 @@
         console.log(quantity);
 
         if(sessionUser == null){
-            alert(quantity);
+            alert("로그인 후 이용해주세요");
         }else if(sessionUser != null){
             location.href="http://localhost:8080/orderPage" + "?qa=" + quantity + "&code=" + pdct_code;
         }

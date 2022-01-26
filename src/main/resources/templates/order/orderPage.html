@@ -7,24 +7,25 @@
             <p style="font-size: xx-large">주문하기</p>
             <div class="row align-items-center">
                 <div class="col-lg-6 mr-5" style="border-top: solid 1px; border-bottom: solid 1px; padding: 14px;">
-                    <form action="">
                         <div>
                             <p>배송정보</p>
                         </div>
                         <div>
                             <label for="city">주소</label>
-                            <input type="text" id="city" class="form-control" th:value="${session.loginUser.getAddress().getCity()}">
+                            <p id="city" class="form-control" th:text="${session.loginUser.getAddress().getCity()}"></p>
                         </div>
                         <div>
                             <label for="street">도로명</label>
-                            <input type="text" id="street" class="form-control" th:value="${session.loginUser.getAddress().getStreet()}">
+                            <p type="text" id="street" class="form-control" th:text="${session.loginUser.getAddress().getStreet()}"></p>
                         </div>
                         <div>
                             <label for="zipcode">우편번호</label>
-                            <input type="text" id="zipcode" class="form-control" th:value="${session.loginUser.getAddress().getZipcode()}">
+                            <p type="text" id="zipcode" class="form-control" th:text="${session.loginUser.getAddress().getZipcode()}"></p>
                         </div>
-                    </form>
                 </div>
+
+
+
 
                 <div class="col-lg-5" style="border: solid 3px; padding: 14px;">
                     <p style="border-bottom: solid 3px;">주문정보</p>
@@ -48,11 +49,32 @@
                         <p>개인정보 수집/이용동의 <a href="">보기</a> </p>
                         <p>개인정보 제3자 제공 동의 <a href="">보기</a> </p>
                     </div>
-                    <button ondblclick="" class="btn btn-primary col-lg-12">구매하기</button>
+                    <div>
+                        <form action="/order" method="post" name="orderForm">
+                            <input type="hidden" th:value="${session.loginUser.getUser_id()}" name="userId">
+                            <input type="hidden" th:value="${product.getPdct_code()}" name="productCode">
+                            <input type="hidden" th:value="${quantity}" name="quantity">
+                        </form>
+                    </div>
+
+                    <button type="button" onclick="order_sub()" class="btn btn-primary col-lg-12">구매하기</button>
+
                 </div>
+
             </div>
 
         </div>
 
     </div>
+
+    <script>
+        function order_sub(){
+
+            if(confirm("주문하시겠습니까?") == true){
+                document.orderForm.submit();
+            }
+
+
+        }
+    </script>
 </main>
