@@ -11,7 +11,7 @@ import javax.persistence.*;
 public class OrderItem {
     @Id @GeneratedValue
     @Column(name="od_code")
-    private Long od_code;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="pdct_code")

@@ -1,7 +1,10 @@
 package com.goodshop.demo.order;
 
+import com.goodshop.demo.domain.order.Order;
+import com.goodshop.demo.domain.order.OrderItem;
 import com.goodshop.demo.domain.product.Product;
 import com.goodshop.demo.domain.user.User;
+import com.goodshop.demo.repository.OrderItemRepository;
 import com.goodshop.demo.repository.OrderRepository;
 import com.goodshop.demo.repository.ProductRepository;
 import com.goodshop.demo.service.OrderService;
@@ -24,6 +27,7 @@ public class OrderController {
     private final ProductService productService;
     private final OrderRepository orderRepository;
     private final ProductRepository productRepository;
+    private final OrderItemRepository orderItemRepository;
 
 
 //    @GetMapping("/order")
@@ -39,29 +43,38 @@ public class OrderController {
 //    }
 
     @PostMapping("/order")
-    public String order(@RequestParam("userId") String user_id,
-                        @RequestParam("productCode") Long pdct_code,
-                        @RequestParam("quantity") int pdct_quantity,
+    public String order_Post(OrderForm orderForm,
                         RedirectAttributes redirectAttributes){
 
-        Long order_code = orderService.order(user_id, pdct_code, pdct_quantity);
+        Long order_code = orderService.order(orderForm.getUser_id(),
+                                             orderForm.getPdct_code(),
+                                             orderForm.getQuantity());
 
-        redirectAttributes.addAttribute("pdct_code", pdct_code);
-        redirectAttributes.addAttribute("order_info", order_code);
-        redirectAttributes.addAttribute("quantity", pdct_quantity);
+        redirectAttributes.addFlashAttribute("pdct_code", orderForm.getPdct_code());
+        redirectAttributes.addFlashAttribute("order_info", orderRepository.findOne(order_code));
+        redirectAttributes.addFlashAttribute("quantity", orderForm.getQuantity());
+
 
         return "redirect:/orders";
     }
 
     @GetMapping("/orders")
-    public String orders(@RequestParam(value = "pdct_code") Long pdct_code,
-                         @RequestParam(value = "order_code") Long order_code,
-                         @RequestParam(value="quantity") int quantity,
-                         Model model){
+    public String orders(Model model){
 
-        model.addAttribute("product",productRepository.findOne(pdct_code));
-        model.addAttribute("order_info", orderRepository.findOne(order_code));
+
+        Long pdct_code = (Long) model.asMap().get("pdct_code");
+        Order order = (Order) model.asMap().get("order_info");
+
+        int quantity = (int) model.asMap().get("quantity");
+
+        OrderItem orderItem =  orderItemRepository.findByOd_code(order.getId());
+
+        model.addAttribute("product", productRepository.findOne(pdct_code));
         model.addAttribute("quantity", quantity);
+        model.addAttribute("orderItem", orderItem);
+        model.addAttribute("order", orderRepository.findOne(order.getId()));
+
+
 
         return "order/orders";
     }

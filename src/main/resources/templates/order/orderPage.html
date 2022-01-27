@@ -51,8 +51,8 @@
                     </div>
                     <div>
                         <form action="/order" method="post" name="orderForm">
-                            <input type="hidden" th:value="${session.loginUser.getUser_id()}" name="userId">
-                            <input type="hidden" th:value="${product.getPdct_code()}" name="productCode">
+                            <input type="hidden" th:value="${session.loginUser.getUser_id()}" name="user_id">
+                            <input type="hidden" th:value="${product.getPdct_code()}" name="pdct_code">
                             <input type="hidden" th:value="${quantity}" name="quantity">
                         </form>
                     </div>

@@ -41,7 +41,7 @@ public class OrderService {
         //주문 저장
         orderRepository.save(order);
 
-        return order.getO_code();
+        return order.getId();
     }
 
     /**

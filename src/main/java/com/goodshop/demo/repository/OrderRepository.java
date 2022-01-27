@@ -1,6 +1,7 @@
 package com.goodshop.demo.repository;
 
 import com.goodshop.demo.domain.order.Order;
+import com.goodshop.demo.domain.order.OrderItem;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
@@ -22,6 +23,7 @@ public class OrderRepository {
     public Order findOne(Long id){
         return em.find(Order.class, id);
     }
+
 
 
     //주문 상테 검색

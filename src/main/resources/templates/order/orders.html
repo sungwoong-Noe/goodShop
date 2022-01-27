@@ -39,15 +39,15 @@
                     </div>
                     <div class="row ">
                         <p class="col-md-8" style="font-weight: bold; font-size: x-large">총 결제금액</p>
-                        <p style="font-weight: 900; font-size: x-large; padding-left:5px; color: darkorange;" th:text="${order_info.getTotalPrice()}"></p>
+                        <p style="font-weight: 900; font-size: x-large; padding-left:5px; color: darkorange;" th:text="${orderItem.getTotalPrice()}"></p>
                     </div>
                     <p style="border-top: solid 3px;"></p>
                     <div class="col-sm-12" style="padding:0px">
-                        <p style="font-weight: bold; font-size: 15px;">이용약관 및 개인정보 제3자 제공사항에 대해 확인하였으며 결제에 동의합니다.</p>
-                        <p>개인정보 수집/이용동의 <a href="">보기</a> </p>
-                        <p>개인정보 제3자 제공 동의 <a href="">보기</a> </p>
+                        <p style="font-size: x-large">구매자 정보</p>
+                        <p th:text="${order.getUser().getUser_name()}" id="order_name" style="font-weight: bold; font-size: 15px;"></p>
+                        <p th:text="${order.getUser().getUser_phone()}"></p>
                     </div>
-                    <button ondblclick="" class="btn btn-primary col-lg-12">구매하기</button>
+                    <button class="btn-secondary col-sm-12">주문 내역보기</button>
                 </div>
             </div>
 

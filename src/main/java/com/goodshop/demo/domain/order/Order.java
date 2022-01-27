@@ -17,7 +17,7 @@ public class Order {
     @Id
     @GeneratedValue
     @Column(name="o_code")
-    private Long o_code;
+    private Long id;
 
     //다대일 관계
     //회원id
