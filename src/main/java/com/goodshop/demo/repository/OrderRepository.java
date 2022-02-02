@@ -24,6 +24,14 @@ public class OrderRepository {
         return em.find(Order.class, id);
     }
 
+    //회원이름으로 조회
+    public List<Order> findList(String user_id){
+
+            return em.createQuery("select o from Order o where o.user.user_name =: user_id ",Order.class)
+                .setParameter("user_id", user_id)
+                .getResultList();
+    }
+
 
 
     //주문 상테 검색

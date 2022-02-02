@@ -29,7 +29,6 @@ public class OrderController {
     private final ProductRepository productRepository;
     private final OrderItemRepository orderItemRepository;
 
-
 //    @GetMapping("/order")
 //    public String createForm(Model model){
 //        List<User> users = userService.findMember();
@@ -44,11 +43,11 @@ public class OrderController {
 
     @PostMapping("/order")
     public String order_Post(OrderForm orderForm,
-                        RedirectAttributes redirectAttributes){
+                             RedirectAttributes redirectAttributes){
 
         Long order_code = orderService.order(orderForm.getUser_id(),
-                                             orderForm.getPdct_code(),
-                                             orderForm.getQuantity());
+                orderForm.getPdct_code(),
+                orderForm.getQuantity());
 
         redirectAttributes.addFlashAttribute("pdct_code", orderForm.getPdct_code());
         redirectAttributes.addFlashAttribute("order_info", orderRepository.findOne(order_code));
@@ -59,7 +58,7 @@ public class OrderController {
     }
 
     @GetMapping("/orders")
-    public String orders(Model model){
+    public String orders(OrderForm orderForm, Model model){
 
 
         Long pdct_code = (Long) model.asMap().get("pdct_code");
@@ -73,8 +72,6 @@ public class OrderController {
         model.addAttribute("quantity", quantity);
         model.addAttribute("orderItem", orderItem);
         model.addAttribute("order", orderRepository.findOne(order.getId()));
-
-
 
         return "order/orders";
     }
@@ -91,5 +88,15 @@ public class OrderController {
         model.addAttribute("orderPrice", orderPrice);
         return "order/orderPage";
     }
+
+    @GetMapping("/orderList/{user_id}")
+    public String orderList(@PathVariable String user_id, Model model){
+
+        List<OrderItem> orderList = orderService.orderList(user_id);
+        model.addAttribute("orderList", orderItemRepository.orderItems(user_id));
+
+        return "order/orderList";
+    }
+
 
 }

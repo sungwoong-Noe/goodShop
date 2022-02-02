@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="layouts/layout :: layoutFragment(~{::main})" xmlns:th="https://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<main>
+    <div class="page-section">
+        <div class="container">
+            <h2 class="login text-center"><b>마이페이지</b></h2>
+                <div class="row mb-3">
+                    <div class="col-sm-5 login-id">
+                        <a th:href="@{/users/} + ${session.loginUser.getUser_id()}" class="btn btn-primary col-md-12">내 정보 보기</a>
+                    </div>
+                    <div class="col-sm-5 login-id">
+                        <a th:href="@{/orderList/} + ${session.loginUser.getUser_id()}" class="btn btn-primary col-md-12">주문 내역</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html th:replace="layouts/layout :: layoutFragment(~{::main})" lang="ko" xmlns:th="https://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" >
+
+<main>
+    <div class="page-section mt-5">
+        <div class="container" >
+            <p style="font-size: xx-large">구매정보</p>
+            <div class="row align-items-center">
+                <table class="table">
+                    <tr>
+                        <td>주문일시</td>
+                        <th>주문상태</th>
+                        <th>주문정보</th>
+                    </tr>
+                    <tr th:each="order : ${orderList}">
+                        <td th:text="${order.getOrder().getOrderDate()}"></td>
+                        <td th:text="${order.getProduct().getPdct_name()}"></td>
+                        <td th:text="${order.}"></td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+</main>

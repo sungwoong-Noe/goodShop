@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.SessionCookieConfig;
@@ -92,5 +93,19 @@ public class UserController {
         userService.join(user);
 
         return "redirect:/login";
+    }
+
+    @GetMapping("/users")
+    public String userPage(){
+        return "user/userPage";
+    }
+
+    @GetMapping("/users/{user_id}")
+    public String userDetail(@PathVariable String user_id, Model model){
+
+        User userInfo = userService.findOne(user_id);
+
+        model.addAttribute("userDetail", userInfo);
+        return "user/userDetail";
     }
 }

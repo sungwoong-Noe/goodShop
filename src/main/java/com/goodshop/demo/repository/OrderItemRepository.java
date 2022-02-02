@@ -24,12 +24,27 @@ public class OrderItemRepository{
 //                .getResultList();
 //    }
 
+    /**
+     * 주문 코드로 주문 내역 조회
+     * @param o_code
+     * @return
+     */
     public OrderItem findByOd_code(Long o_code){
 
         return em.createQuery("select o from OrderItem o where o.order.id =: o_code ", OrderItem.class)
                 .setParameter("o_code", o_code)
                 .getSingleResult();
+    }
 
+
+    /**
+     * 주문정보
+     */
+    public List<OrderItem> orderItems(String user_id){
+        return em.createQuery(
+                "select o from Order o Join fetch o.orderItems where o.user.user_name =: user_id")
+                .setParameter("user_id", user_id)
+                .getResultList();
     }
 
 }

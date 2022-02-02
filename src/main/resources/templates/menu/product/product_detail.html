@@ -32,7 +32,7 @@
 
                             <div class="features pt-4 pb-2">
                                 <b th:text="${product.getPdct_name()}">상품이름</b>
-                                <h5 class="pt-5" th:text="${product.getPdct_price()} + 원"> 상품가격</h5>
+                                <h5 class="pt-5" th:text="${product.getPdct_price()} + 원"> 상품가격</h5><p th:text="'(' + ${product.getPdct_quantity()}  + '개)'"></p>
                             </div>
                             <h5 class="pt-3 mb-3" style="font-size: 15px;">배송정보</h5>
                             <ul style="list-style: none;" class="pl-0">

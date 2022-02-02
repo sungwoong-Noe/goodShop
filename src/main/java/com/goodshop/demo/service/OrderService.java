@@ -4,15 +4,14 @@ import com.goodshop.demo.domain.order.Order;
 import com.goodshop.demo.domain.order.OrderItem;
 import com.goodshop.demo.domain.product.Product;
 import com.goodshop.demo.domain.user.User;
-import com.goodshop.demo.repository.OrderRepository;
-import com.goodshop.demo.repository.OrderSearch;
-import com.goodshop.demo.repository.ProductRepository;
-import com.goodshop.demo.repository.UserRepository;
+import com.goodshop.demo.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 @Service
 @Transactional(readOnly = true)
@@ -22,12 +21,13 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final UserRepository userRepository;
     private final ProductRepository productRepository;
+    private final OrderItemRepository orderItemRepository;
 
     /**
      * 주문
      */
     @Transactional
-    public Long order(String userId, Long pdct_code, int od_quantity){
+    public Long order(String userId, Long pdct_code, int od_quantity) {
 
         User user = userRepository.findOne(userId);
         Product product = productRepository.findOne(pdct_code);
@@ -48,11 +48,28 @@ public class OrderService {
      * 주문 취소
      */
     @Transactional
-    public void cancelOrder(Long orderId){
+    public void cancelOrder(Long orderId) {
         //주문 entity 조회
         Order order = orderRepository.findOne(orderId);
         //취소
         order.cancel();
+    }
+
+
+    /**
+     * 회원 아이디로 주문아이템 조회
+     */
+    @Transactional
+    public List<OrderItem> orderList(String user_id) {
+
+        List<Order> orderList = orderRepository.findList(user_id);
+        List<OrderItem> orderItemList = new ArrayList<>();
+
+        for (Order order : orderList) {
+            orderItemList.add(orderItemRepository.findByOd_code(order.getId()));
+        }
+
+        return orderItemList;
     }
 
     //검색

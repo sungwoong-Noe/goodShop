@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="layouts/layout :: layoutFragment(~{::main})" xmlns:th="https://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<main>
+    <div class="page-section">
+        <div class="container">
+            <h2 class="login text-center"><b>회원정보</b></h2>
+                <div class="row mb-3">
+                    <div class="col-sm-5 login-id">
+                        <input type="text" class="form-control" th:value="${userDetail.getUser_id()}" readonly>
+                    </div>
+                    <div class="col-sm-5 login-id">
+                        <input type="text" class="form-control" th:value="${userDetail.getUser_name()}" readonly>
+                    </div>
+                    <div class="col-sm-5 login-id">
+                        <input type="text" class="form-control" th:value="${userDetail.getUser_phone()}" readonly>
+                    </div>
+                    <div class="col-sm-5 login-id">
+                        <input type="text" class="form-control" th:value="${userDetail.getUser_email()}" readonly>
+                    </div>
+                    <div class="col-sm-5 login-id">
+                        <input type="text" class="form-control" th:value="${userDetail.getAddress().getCity()}" readonly>
+                    </div>
+                    <div class="col-sm-5 login-id">
+                        <input type="text" class="form-control" th:value="${userDetail.getAddress().getStreet()}" readonly>
+                    </div>
+                    <div class="col-sm-5 login-id">
+                        <input type="text" class="form-control" th:value="${userDetail.getAddress().getZipcode()}" readonly>
+                    </div>
+
+
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
