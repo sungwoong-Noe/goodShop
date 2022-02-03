@@ -76,6 +76,15 @@ public class OrderController {
         return "order/orders";
     }
 
+    @PostMapping("/orders/{orderId}/cancel")
+    public String cancelOrder(@PathVariable("orderId") Long orderId){
+        Order order = orderRepository.findOne(orderId);
+        String user_id = order.getUser().getUser_id();
+        orderService.cancelOrder(orderId);
+        return "redirect:/orderList/" + user_id;
+    }
+
+
     @GetMapping("/orderPage")
     public String order(@RequestParam int qa, @RequestParam Long code, Model model) {
 
@@ -97,6 +106,8 @@ public class OrderController {
 
         return "order/orderList";
     }
+
+
 
 
 }

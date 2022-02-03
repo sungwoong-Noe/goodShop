@@ -4,6 +4,7 @@ import com.goodshop.demo.domain.product.UploadFile;
 import com.goodshop.demo.domain.product.Product;
 import com.goodshop.demo.domain.product.childEntity.FileStore;
 import com.goodshop.demo.repository.ProductRepository;
+import com.goodshop.demo.service.OrderService;
 import com.goodshop.demo.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
@@ -38,8 +39,6 @@ public class ProductController {
 
     @GetMapping("/item/new")
     public String newItem(Model model){
-
-
 
         model.addAttribute("productForm", new ProductForm());
 
@@ -106,6 +105,7 @@ public class ProductController {
 
         model.addAttribute("image" ,product);
         model.addAttribute("product", form);
+
         return "menu/product/updateForm";
     }
 
