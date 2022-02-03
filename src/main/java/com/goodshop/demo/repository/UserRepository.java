@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -17,6 +18,7 @@ public class UserRepository {
 
 
     //Entity매니저를 주입해준다
+    @PersistenceContext
     private final EntityManager em;
 
     //유저 등록

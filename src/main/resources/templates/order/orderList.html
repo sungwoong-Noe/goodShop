@@ -11,11 +11,13 @@
                         <td>주문일시</td>
                         <th>주문상태</th>
                         <th>주문정보</th>
+                        <th>주문자</th>
                     </tr>
                     <tr th:each="order : ${orderList}">
                         <td th:text="${order.getOrder().getOrderDate()}"></td>
-                        <td th:text="${order.getProduct().getPdct_name()}"></td>
-                        <td th:text="${order.}"></td>
+                        <td th:text="${order.getOrder().getStatus()}"></td>
+                        <td th:text="${order.getProduct().getPdct_name() + '/' + order.getOd_quantity() + '개'}"></td>
+                        <td th:text="${order.getOrder().getUser().getUser_name()}"></td>
                     </tr>
                 </table>
             </div>

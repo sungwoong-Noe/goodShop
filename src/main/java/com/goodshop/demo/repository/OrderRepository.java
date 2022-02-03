@@ -7,12 +7,14 @@ import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
 public class OrderRepository {
 
+    @PersistenceContext
     private final EntityManager em;
 
     public void save(Order order){

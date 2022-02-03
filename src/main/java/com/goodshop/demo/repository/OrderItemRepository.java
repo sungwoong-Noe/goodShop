@@ -42,7 +42,7 @@ public class OrderItemRepository{
      */
     public List<OrderItem> orderItems(String user_id){
         return em.createQuery(
-                "select o from Order o Join fetch o.orderItems where o.user.user_name =: user_id")
+                "select o from OrderItem o Join fetch o.order left join fetch o.product where o.order.user.user_id =: user_id", OrderItem.class)
                 .setParameter("user_id", user_id)
                 .getResultList();
     }

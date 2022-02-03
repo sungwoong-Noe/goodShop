@@ -31,7 +31,7 @@
                             </li>
                         </ul>
 
-                        <div class="ml-auto">
+                        <div class="ml-auto row">
 
                             <a href="/login" th:if="${session.loginUser == null }" class="btn btn-outline rounded-pill">로그인</a>
                             <a th:href="@{/users}" th:if="${session.loginUser != null}" class="btn btn-outline rounded-pill">마이페이지</a>

@@ -1,5 +1,6 @@
 package com.goodshop.demo.domain.product;
 
+import com.goodshop.demo.domain.order.OrderItem;
 import com.goodshop.demo.exception.NotEnoughStockException;
 import lombok.Getter;
 import lombok.Setter;
@@ -47,10 +48,6 @@ public class Product {
 
 
 
-
-    @ManyToMany(mappedBy = "products")
-    private List<Category> categories = new ArrayList<>();
-    
     
     //비지니스 로직
     /**
