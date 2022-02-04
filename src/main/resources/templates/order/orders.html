@@ -30,7 +30,7 @@
                     <div class="row" style="padding: 20px;">
                         <img th:src="|/images/${product.getPdct_image()}|" alt="" width="200">
                         <p style="margin: 10px;" th:text="${product.getPdct_name()}"></p>
-                        <p style="margin: 10px;" th:text="${quantity}">개</p>
+                        <p style="margin: 10px;" th:text="${quantity} + 개"></p>
                     </div>
                     <p style="border-top: solid 3px;"></p>
                     <div class="row" >
@@ -47,11 +47,26 @@
                         <p th:text="${order.getUser().getUser_name()}" id="order_name" style="font-weight: bold; font-size: 15px;"></p>
                         <p th:text="${order.getUser().getUser_phone()}"></p>
                     </div>
-                    <button class="btn-secondary col-sm-12">주문 내역보기</button>
+                    <a  th:href="@{/orderList/{u_id}(u_id=${order.getUser().getUser_id()})}"  class="btn-secondary col-sm-12">주문 내역보기</a>
                 </div>
             </div>
 
         </div>
 
     </div>
+
+    <script th:inline="javascript">
+        function orderList(u_id){
+            if(true){
+                var o_List = document.createElement("form");
+                o_List.setAttribute("method", "post");
+                o_List.setAttribute("action", "/orderList/" + u_id);
+                document.body.appendChild(o_List);
+                o_List.submit();
+
+
+            }
+
+        }
+    </script>
 </main>
