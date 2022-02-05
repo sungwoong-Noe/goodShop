@@ -33,6 +33,7 @@
                         <img th:src="|/images/${product.getPdct_image()}|" alt="" width="200">
                         <p style="margin: 10px;" th:text="${product.getPdct_name()}"></p>
                         <p style="margin: 10px;" th:text="${quantity}">개</p>
+                        <p class="field-error" th:each="od_Err:${#fields.globalErrors()}" th:text="${od_Err}"></p>
                     </div>
                     <p style="border-top: solid 3px;"></p>
                     <div class="row" >

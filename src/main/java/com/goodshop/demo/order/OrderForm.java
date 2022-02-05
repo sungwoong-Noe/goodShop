@@ -8,7 +8,9 @@ import lombok.Setter;
 public class OrderForm {
 
     private String user_id;
+
     private Long pdct_code;
+
     private int quantity;
 
 

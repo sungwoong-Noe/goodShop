@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6 py-3 text-left">
-                    <form th:href="@{/order}" method="post" name="pdct_form">
+                    <form th:href="@{/order}"  method="post" name="pdct_form">
                             <div th:if="${session.loginUser != null}">
                                 <input type="hidden" th:value="${product.getPdct_code()}" name="pdct_code" id="pdct_code">
                                 <input type="hidden"  th:value="${session.loginUser.getUser_id()}"></input>
@@ -54,7 +54,6 @@
                             <button class="btn btn-primary">장바구니</button>
                             <a class="btn btn-outline" th:onclick="|order();|" >구매하기</a>
                             <a th:if="${session.loginUser?.getUser_name() == product.getSeller()}" th:href="@{/item/} + ${product.getPdct_code} + @{/edit}"> 수정</a>
-
                         </form>
                     </div>
                 </div>
@@ -75,24 +74,34 @@
 </main>
 </html>
 <script th:inline="javascript">
+
+    /*<![CDATA[*/
     function count(type){
         const resultElement = document.getElementById('pdct_quantity');
 
         let number = resultElement.value;
-
+        let quantity = /*[[${product.getPdct_quantity()}]]*/;
 
         if(type === 'plus') {
-            number = parseInt(number) + 1;
+            if(number < quantity){
+                number = parseInt(number) + 1;
+            }else if(number >= quantity){
+                alert("재고가 부족합니다.");
+            }
+
         }else if(type === 'minus'){
-            if(number < 2){
+            if(number < 2) {
                 alert("1보다 작을수 없습니다.")
             }else{
                 number = parseInt(number) - 1;
             }
         }
 
+
         resultElement.value = number;
     }
+
+    /*]]*/
 
     function order(){
 

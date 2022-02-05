@@ -13,9 +13,11 @@ import com.goodshop.demo.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -42,12 +44,24 @@ public class OrderController {
 //    }
 
     @PostMapping("/order")
-    public String order_Post(OrderForm orderForm,
+    public String order_Post(@Valid @ModelAttribute OrderForm orderForm,
+                             BindingResult bindingResult,
                              RedirectAttributes redirectAttributes){
+
+        if(bindingResult.hasErrors()){
+            return "/item/" + orderForm.getPdct_code();
+        }
 
         Long order_code = orderService.order(orderForm.getUser_id(),
                 orderForm.getPdct_code(),
                 orderForm.getQuantity());
+
+        Product orderProduct = productRepository.findOne(orderForm.getPdct_code());
+
+        if(orderProduct.getPdct_quantity() < orderForm.getQuantity()){
+            bindingResult.reject("od_quantityErr", "재고가 부족합니다.");
+            return "/item/" + orderForm.getPdct_code();
+        }
 
         redirectAttributes.addFlashAttribute("pdct_code", orderForm.getPdct_code());
         redirectAttributes.addFlashAttribute("order_info", orderRepository.findOne(order_code));
@@ -58,7 +72,7 @@ public class OrderController {
     }
 
     @GetMapping("/orders")
-    public String orders(OrderForm orderForm, Model model){
+    public String orders(Model model){
 
 
         Long pdct_code = (Long) model.asMap().get("pdct_code");

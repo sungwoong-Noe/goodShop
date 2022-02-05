@@ -17,9 +17,11 @@ public class ProductForm {
     private Long pdct_code;
 
     //상품 가격
+    @NotEmpty(message="상품 가격을 입력해주세요.")
     private int pdct_price;
 
     //상품 재고
+    @NotEmpty(message = "상품 수량을 입력해주세요")
     private int pdct_quantity;
 
     //대표이미지
