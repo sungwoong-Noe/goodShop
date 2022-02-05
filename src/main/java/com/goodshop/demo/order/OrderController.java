@@ -56,12 +56,6 @@ public class OrderController {
                 orderForm.getPdct_code(),
                 orderForm.getQuantity());
 
-        Product orderProduct = productRepository.findOne(orderForm.getPdct_code());
-
-        if(orderProduct.getPdct_quantity() < orderForm.getQuantity()){
-            bindingResult.reject("od_quantityErr", "재고가 부족합니다.");
-            return "/item/" + orderForm.getPdct_code();
-        }
 
         redirectAttributes.addFlashAttribute("pdct_code", orderForm.getPdct_code());
         redirectAttributes.addFlashAttribute("order_info", orderRepository.findOne(order_code));
