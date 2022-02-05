@@ -37,7 +37,7 @@ public class UserService {
 
     //중복 회원 검증
     private void validateDuplicateUser(User user){
-        List<User> findUsers = userRepository.findByName(user.getUser_name());
+        List<User> findUsers = userRepository.findByName(user.getUser_id());
         if(!findUsers.isEmpty()){
             throw new IllegalStateException("이미 존재하는 회원입니다");
         }

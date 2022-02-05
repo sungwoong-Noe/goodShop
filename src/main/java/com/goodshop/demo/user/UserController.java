@@ -8,16 +8,15 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.servlet.SessionCookieConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import javax.websocket.Session;
 
 @RequiredArgsConstructor
 @Controller
@@ -90,8 +89,12 @@ public class UserController {
         user.setUser_email(form.getUser_email());
         user.setUser_phone(form.getUser_phone());
 
-        userService.join(user);
-
+        try{
+            userService.join(user);
+        }catch (IllegalStateException e){
+            bindingResult.addError(new FieldError("User","user_id", e.getMessage()));
+            return "login/join";
+        }
         return "redirect:/login";
     }
 

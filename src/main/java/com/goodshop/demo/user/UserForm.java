@@ -1,8 +1,10 @@
 package com.goodshop.demo.user;
 
+import com.goodshop.demo.domain.user.Address;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Embedded;
 import javax.validation.constraints.*;
 
 @Getter @Setter
@@ -25,6 +27,8 @@ public class UserForm {
     private String city;
     private String street;
     private String zipcode;
+
+
 
 
 }
