@@ -34,13 +34,13 @@ public class UserRepository {
 
     //전체 유저 조회
     public List<User> findAll(){
-        return em.createQuery("select m from User m", User.class)
+        return em.createQuery("select u from User u", User.class)
                 .getResultList();
     }
 
     //이름으로 회원조회
     public List<User> findByName(String name){
-        return em.createQuery("select m from User m where m.user_name = :name", User.class)
+        return em.createQuery("select u from User u where u.user_name = :name", User.class)
                 .setParameter("name", name)
                 .getResultList();
     }
@@ -48,7 +48,7 @@ public class UserRepository {
     //로그인 조회
     public Optional<User> findByLoginId(String userId){
         return findAll().stream()
-                .filter(m -> m.getUser_id().equals(userId))
+                .filter(u -> u.getUser_id().equals(userId))
                 .findFirst();
     }
 }

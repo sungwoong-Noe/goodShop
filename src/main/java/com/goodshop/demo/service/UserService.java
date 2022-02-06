@@ -57,8 +57,8 @@ public class UserService {
     //로그인
     public User loginForm(String userId, String userPasswd){
         return userRepository.findByLoginId(userId)
-                .filter(m -> m.getUser_passwd().equals(userPasswd))
-                .orElse(null);
+                .filter(u -> u.getUser_passwd().equals(userPasswd))
+                .orElse(null);  //일치되는 값이 없다면 null을 반
     }
 
 
