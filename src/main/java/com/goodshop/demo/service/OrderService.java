@@ -32,11 +32,15 @@ public class OrderService {
         User user = userRepository.findOne(userId);
         Product product = productRepository.findOne(pdct_code);
 
+
+
         //주문상품 생성
         OrderItem orderItem = OrderItem.createOrderItem(product, product.getPdct_price(), od_quantity);
 
         //주문생성
         Order order = Order.createOrder(user, orderItem);
+
+        orderItem.setOd_price(order.getTotalPrice());
 
         //주문 저장
         orderRepository.save(order);

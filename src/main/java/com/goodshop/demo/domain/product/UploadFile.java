@@ -10,5 +10,6 @@ public class UploadFile {
     public UploadFile(String uploadFileName, String storeFileName) {
         this.uploadFileName = uploadFileName;
         this.storeFileName = storeFileName;
+
     }
 }
