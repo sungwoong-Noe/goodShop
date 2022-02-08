@@ -21,11 +21,16 @@ public class UserForm {
 
     @Email(message = "이메일 형식에 맞지 않습니다.")
     private String user_email;
-
+    
     private String user_phone;
-
+    
+    @NotEmpty(message = "주소를 입력해주세요")
     private String city;
+    
+    @NotEmpty(message = "상세주소를 입력해주세요")
     private String street;
+    
+    @NotEmpty(message = "주소를 입력해주세요")
     private String zipcode;
 
 

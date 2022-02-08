@@ -19,7 +19,7 @@ public class ReviewForm {
 
     private Long pdct_code;
 
-    private String user_id;
+    private Long o_code;
 
 
 }

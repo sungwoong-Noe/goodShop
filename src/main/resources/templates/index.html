@@ -77,40 +77,40 @@
       </div>
 
 
-      <div class="row mt-5 text-center">
+<!--      <div class="row mt-5 text-center">-->
 
-        <div class="col-lg-4 py-3 wow fadeInUp">
-              <div class="display-3">
-                <img th:src="|/images/${product[0].getPdct_image()}|" width="350" alt="">
-              </div>
-              <div class="text-left">
-                 <a th:href="@{/item/{pdct_code}(pdct_code = ${product[0]?.getPdct_code()})}" th:text="${product[0].getPdct_name()}"></a>
-                 <p><b th:text="${product[0].getPdct_price()}"></b>원</p>
-                 <div class="freeShip">무료배송</div>
-              </div>
-        </div>
-        <div class="col-lg-4 py-3 wow fadeInUp">
-          <div class="display-3">
-            <img th:src="|/images/${product[1]?.getPdct_image()}|" width="350" alt="">
-          </div>
-          <div class="text-left">
-            <a th:href="@{/item/{pdct_code}(pdct_code = ${product[1].getPdct_code()})}" th:text="${product[1]?.getPdct_name()}"></a>
-            <p><b th:text="${product[1].getPdct_price()}"></b>원</p>
-            <div class="freeShip">무료배송</div>
-          </div>
-        </div>
-        <div class="col-lg-4 py-3 wow fadeInUp">
-          <div class="display-3">
-            <img th:src="|/images/${product[2].getPdct_image()}|" width="350" alt="">
-          </div>
-          <div class="text-left">
-            <a th:href="@{/item/{pdct_code}(pdct_code = ${product[2].getPdct_code()})}" th:text="${product[2].getPdct_name()}"></a>
-            <p><b th:text="${product[2].getPdct_price()}"></b>원</p>
-            <div class="freeShip">무료배송</div>
-          </div>
-        </div>
+<!--        <div class="col-lg-4 py-3 wow fadeInUp">-->
+<!--              <div class="display-3">-->
+<!--                <img th:src="|/images/${product[0].getPdct_image()}|" width="350" alt="">-->
+<!--              </div>-->
+<!--              <div class="text-left">-->
+<!--                 <a th:href="@{/item/{pdct_code}(pdct_code = ${product[0]?.getPdct_code()})}" th:text="${product[0].getPdct_name()}"></a>-->
+<!--                 <p><b th:text="${product[0].getPdct_price()}"></b>원</p>-->
+<!--                 <div class="freeShip">무료배송</div>-->
+<!--              </div>-->
+<!--        </div>-->
+<!--        <div class="col-lg-4 py-3 wow fadeInUp">-->
+<!--          <div class="display-3">-->
+<!--            <img th:src="|/images/${product[1]?.getPdct_image()}|" width="350" alt="">-->
+<!--          </div>-->
+<!--          <div class="text-left">-->
+<!--            <a th:href="@{/item/{pdct_code}(pdct_code = ${product[1].getPdct_code()})}" th:text="${product[1]?.getPdct_name()}"></a>-->
+<!--            <p><b th:text="${product[1].getPdct_price()}"></b>원</p>-->
+<!--            <div class="freeShip">무료배송</div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="col-lg-4 py-3 wow fadeInUp">-->
+<!--          <div class="display-3">-->
+<!--            <img th:src="|/images/${product[2].getPdct_image()}|" width="350" alt="">-->
+<!--          </div>-->
+<!--          <div class="text-left">-->
+<!--            <a th:href="@{/item/{pdct_code}(pdct_code = ${product[2].getPdct_code()})}" th:text="${product[2].getPdct_name()}"></a>-->
+<!--            <p><b th:text="${product[2].getPdct_price()}"></b>원</p>-->
+<!--            <div class="freeShip">무료배송</div>-->
+<!--          </div>-->
+<!--        </div>-->
 
-     </div>
+<!--     </div>-->
 
     </div> <!-- .container -->
   </div> <!-- .page-section -->
