@@ -38,7 +38,7 @@
 
 
           <div class="col-sm-5 login-id row pr-0">
-            <input type="text" th:field="*{zipcode}" placeholder="우편번호" th:class="${#fields.hasErrors('user_id')} ? 'form-control col-sm-7 fieldError' : 'form-control col-sm-7'">
+            <input type="text" th:field="*{zipcode}" placeholder="우편번호" th:class="${#fields.hasErrors('user_id')} ? 'form-control fieldError col-sm-7 ' : 'form-control col-sm-7'">
             <input type="button" onclick="addressApi()" class="btn btn-primary col-sm-4 ml-4 mr-0" value="우편번호 찾기">
             <p th:if="${#fields.hasErrors('zipcode')}" th:errors="*{zipcode}">Incorrect date</p>
           </div>

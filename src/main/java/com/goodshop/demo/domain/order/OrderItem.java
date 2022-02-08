@@ -28,7 +28,7 @@ public class OrderItem {
     //주문수량
     private int od_quantity;
 
-    protected OrderItem() {
+    public OrderItem() {
     }
 
     //생성 메서드

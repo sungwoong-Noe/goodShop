@@ -103,6 +103,7 @@
 
 </html>
 
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script th:inline="javascript">
 
     /*<![CDATA[*/
@@ -137,19 +138,40 @@
         let userId = /*[[${session.loginUser?.getUser_id()}]]*/;
         var pdctCode = /*[[${product.getPdct_code()}]]*/;
 
-        if(userId != null){
+        // if(userId != null){
+        //
+        //     alert(userId);
+        //
+        //     if(document.getElementById('writebutton').style.display === 'block'){
+        //         document.getElementById('writebutton').style.display = 'none';
+        //     }else {
+        //
+        //         document.getElementById('writebutton').style.display = 'block';
+        //     }
+        // }
 
-            alert(userId);
 
-            if(document.getElementById('writebutton').style.display === 'block'){
-                document.getElementById('writebutton').style.display = 'none';
-            }else {
-
-                document.getElementById('writebutton').style.display = 'block';
-            }
-        }
         if (userId == null){
-            alert("로그인해주세요");
+            alert("제품 구매후 작성 가능합니다.");
+        }else if(userId != null){
+            $.ajax(
+                {
+                    type:"POST",
+                    url:"/item/" + pdctCode + "/" + userId + "/review",
+                    dataType: "JSOn"
+                }
+            )
+            .done(function (){
+                if(document.getElementById('writebutton').style.display === 'block'){
+                    document.getElementById('writebutton').style.display = 'none';
+                }else {
+
+                    document.getElementById('writebutton').style.display = 'block';
+                }
+            })
+            .fail(function (){
+                alert("제품 구매후 작성 가능합니다.");
+            });
         }
 
     }
