@@ -6,9 +6,9 @@
             <div class="text-left wow fadeInUp ">
                 <ul style="list-style: none;" class="pl-0">
                     <li style="float:left;">
+                    <li>
 
                     </li>
-                    <li>
                         <div class="ml-5 pl-5">
 
                         </div>
@@ -46,7 +46,7 @@
                                     </div>
                                 </li>
                             </ul>
-                            <div class="mb-5">
+                            <div class="mb-5">status
                                 <button type ="button" onclick="count('plus');">+</button>
                                 <input type="text" id="pdct_quantity" name="pdct_quantity" th:value="1" readonly="readonly" style="text-align:center;"/>
                                 <button type="button" onclick="count('minus');">-</button>
@@ -69,10 +69,40 @@
                 </div>
             </div>
         </div>
+        <div class="container features">
+            <p class="text-xl-left">Review</p>
+            <a href="javascript:writeBtn()" type="button" class="btn-secondary">리뷰 쓰기</a>
+            <div id="writebutton" style="display: none;">
+                <form action="">
+                    <input type="text" class="form-control-sm mb-3" placeholder="제목"></input>
+                    <input type="text" class="form-control col-sm-5 mb-3" placeholder="리뷰"></input>
+                </form>
+            </div>
+            <table>
+                <tbody>
+                    <tr class="features">
+                        <td>
+                            작성자: 홍길동<br/>
+                            댓글 : 좋아요
+                        </td>
+
+                    </tr>
+                    <tr class="features">
+                        <td>
+                        작성자: 성춘향<br/>
+                        댓글 : 좋아요2
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div> <!-- .page-section -->
 
 </main>
+
+
 </html>
+
 <script th:inline="javascript">
 
     /*<![CDATA[*/
@@ -101,12 +131,30 @@
         resultElement.value = number;
     }
 
-    document.addEventListener("DOMContentLoaded", function(){
-       var price = /*[[${product.getPdct_price()}]]*/;
-       price.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
-       document.getElementById('pdct_price').setAttribute('text', 'price');
-       console.log(price);
-    });
+
+    function writeBtn(){
+
+        let userId = /*[[${session.loginUser?.getUser_id()}]]*/;
+        var pdctCode = /*[[${product.getPdct_code()}]]*/;
+
+        if(userId != null){
+
+            alert(userId);
+
+            if(document.getElementById('writebutton').style.display === 'block'){
+                document.getElementById('writebutton').style.display = 'none';
+            }else {
+
+                document.getElementById('writebutton').style.display = 'block';
+            }
+        }
+        if (userId == null){
+            alert("로그인해주세요");
+        }
+
+    }
+
+
 
     /*]]*/
 
@@ -124,7 +172,11 @@
         }else if(sessionUser != null){
             location.href="http://localhost:8080/orderPage" + "?qa=" + quantity + "&code=" + pdct_code;
         }
+
+
     }
+
+
 
 
 
