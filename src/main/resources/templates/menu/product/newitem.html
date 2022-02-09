@@ -28,7 +28,7 @@
                         <p th:if="${#fields.hasErrors('detail_image')}" th:errors="*{detail_image}">Incorrect date</p>
                     </div>
                     <div class="col-sm-5 login-id">
-                        <input type="text" class="form-control-file" th:field="*{pdct_detail}" th:placeholder="상세설명" th:class="${#fields.hasErrors('pdct_detail')}  ? 'form-control fieldError' : 'form-control'">
+                        <input type="text"  th:field="*{pdct_detail}" th:placeholder="상세설명" th:class="${#fields.hasErrors('pdct_detail')}  ? 'form-control fieldError' : 'form-control'">
                         <p th:if="${#fields.hasErrors('pdct_detail')}" th:errors="*{pdct_detail}">Incorrect date</p>
                     </div>
                     <div class="col-sm-5 login-id">

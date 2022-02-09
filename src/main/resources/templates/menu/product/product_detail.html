@@ -158,10 +158,10 @@
                 {
                     type:"POST",
                     url:"/item/" + pdctCode + "/" + userId + "/review",
-                    dataType: "JSOn"
+                    dataType: "JSON"
                 }
             )
-            .done(function (){
+            .success(function (){
                 if(document.getElementById('writebutton').style.display === 'block'){
                     document.getElementById('writebutton').style.display = 'none';
                 }else {
@@ -170,7 +170,7 @@
                 }
             })
             .fail(function (){
-                alert("제품 구매후 작성 가능합니다.");
+                alert("에러.");
             });
         }
 

@@ -15,12 +15,12 @@
                         <th>주문취소</th>
                     </tr>
                     <tr th:each="order : ${orderList}">
-                        <td th:text="${order.getOrder().getOrderDate()}"></td>
-                        <td th:text="${order.getOrder().getStatus()}"></td>
-                        <td th:text="${order.getProduct().getPdct_name() + '/' + order.getOd_quantity() + '개'}"></td>
-                        <td th:text="${order.getOrder().getUser().getUser_name()}"></td>
+                        <td th:text="${order?.getOrder().getOrderDate()}"></td>
+                        <td th:text="${order?.getOrder().getStatus()}"></td>
+                        <td th:text="${order?.getProduct()?.getPdct_name() + '/' + order?.getOd_quantity() + '개'}"></td>
+                        <td th:text="${order?.getOrder().getUser().getUser_name()}"></td>
                         <td>
-                            <a th:if="${order.getOrder().getStatus().name() == 'ORDER'}" href="#" th:href="'javascript:orderCancel('+ ${order.getOrder().getId()} + ')'" class="btn-danger">주문취소</a>
+                            <a th:if="${order?.getOrder().getStatus().name() == 'ORDER'}" href="#" th:href="'javascript:orderCancel('+ ${order.getOrder().getId()} + ')'" class="btn-danger">주문취소</a>
                         </td>
                     </tr>
                 </table>
