@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html th:replace="layouts/layout :: layoutFragment(~{::main})" lang="ko" xmlns:th="https://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" >
+
+<main>
+  <div class="page-section">
+    <div class="container text-center">
+      <h2 class="login"><b>문의하기</b></h2>
+      <form action="/item/qna" th:object="${qForm}" method="post">
+        <div class="row mb-3">
+          <div class="row col-sm-3 login-id">
+            <label for="product">문의 상품</label>
+            <select id="product" class="form-control" name="pdct_code">
+              <option value="">회원선택</option>
+              <option th:each="products : ${products}"   th:value="${products.pdct_code}" th:text="${products.getPdct_name()}"></option>
+            </select>
+          </div>
+          <div class="col-sm-5 login-id">
+            <input type="text" class="form-control" th:field="*{q_title}" placeholder="제목" th:class="${#fields.hasErrors('q_title')} ? 'form-control fieldError' : 'form-control'">
+            <p th:if="${#fields.hasErrors('q_title')}" th:errors="*{q_title}">Incorrect date</p>
+          </div>
+          <div class="col-sm-5 login-id">
+            <input type="text" class="form-control" th:field="*{q_content}" placeholder="내용" th:class="${#fields.hasErrors('q_content')}? 'form-control fieldError' : 'form-control'">
+            <p th:if="${#fields.hasErrors('q_content')}" th:errors="*{q_content}">Incorrect date</p>
+          </div>
+<!--          <div class="col-sm-5 login-id">-->
+<!--            <input type="text" class="form-control" th:field="*{city}" placeholder="도시">-->
+<!--          </div>-->
+<!--          <div class="col-sm-5 login-id">-->
+<!--            <input type="text" class="form-control" th:field="*{street}" placeholder="도로명">-->
+<!--          </div>-->
+<!--          <div class="col-sm-5 login-id">-->
+<!--            <input type="text" class="form-control" th:field="*{zipcode}" placeholder="우편번호">-->
+<!--          </div>-->
+          <div class="col-sm-5 login-id">
+            <input type="text" class="form-control" name="user_id" th:value="${session.loginUser?.getUser_id()}" readonly>
+          </div>
+          <div class="col-sm-5 login-btn">
+            <button class="btn btn-primary btn-block">문의등록</button>
+          </div>
+        </div>
+
+
+      </form>
+    </div>
+  </div>
+  </div>
+
+
+  <script>
+
+  </script>
+</main>
