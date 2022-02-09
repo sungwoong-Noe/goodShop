@@ -70,31 +70,21 @@
             </div>
         </div>
         <div class="container features">
-            <p class="text-xl-left">Review</p>
-            <a href="javascript:writeBtn()" type="button" class="btn-secondary">리뷰 쓰기</a>
-            <div id="writebutton" style="display: none;">
-                <form action="">
-                    <input type="text" class="form-control-sm mb-3" placeholder="제목"></input>
-                    <input type="text" class="form-control col-sm-5 mb-3" placeholder="리뷰"></input>
-                </form>
+            <p class="text-xl-left" style="font-size: xx-large">문의내역</p>
+<!--            <a href="javascript:writeBtn()" type="button" class="btn-secondary">리뷰 쓰기</a>-->
+<!--            <div id="writebutton" style="display: none;">-->
+<!--                <form action="">-->
+<!--                    <input type="text" class="form-control-sm mb-3" placeholder="제목"></input>-->
+<!--                    <input type="text" class="form-control col-sm-5 mb-3" placeholder="리뷰"></input>-->
+<!--                </form>-->
+<!--            </div>-->
+            <div class="features col-sm-5" th:each="question: ${questionList}">
+                <ul>
+                    <li th:text="'[' + ${question.getProduct().getPdct_name()} + ']'"></li>
+                    <li th:text="${question.getQ_title()}"></li>
+                    <li th:text="${question.getQ_content()}"></li>
+                </ul>
             </div>
-            <table>
-                <tbody>
-                    <tr class="features">
-                        <td>
-                            작성자: 홍길동<br/>
-                            댓글 : 좋아요
-                        </td>
-
-                    </tr>
-                    <tr class="features">
-                        <td>
-                        작성자: 성춘향<br/>
-                        댓글 : 좋아요2
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
     </div> <!-- .page-section -->
 

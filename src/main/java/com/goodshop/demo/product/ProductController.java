@@ -3,9 +3,11 @@ package com.goodshop.demo.product;
 import com.goodshop.demo.domain.product.UploadFile;
 import com.goodshop.demo.domain.product.Product;
 import com.goodshop.demo.domain.product.childEntity.FileStore;
+import com.goodshop.demo.domain.question.Question;
 import com.goodshop.demo.repository.ProductRepository;
 import com.goodshop.demo.service.OrderService;
 import com.goodshop.demo.service.ProductService;
+import com.goodshop.demo.service.QuestionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -27,6 +29,7 @@ public class ProductController {
     private final ProductService productService;
     private final ProductRepository productRepository;
     private final FileStore fileStore;
+    private final QuestionService questionService;
 
     @GetMapping("/item")
     public String item(Model model){
@@ -77,8 +80,13 @@ public class ProductController {
     public String items(@PathVariable Long pdct_code, Model model) throws Exception{
 
         Product product = productRepository.findOne(pdct_code);
+        List<Question> pQuestion = questionService.findPList(pdct_code);
+
+
+        model.addAttribute("questionList", pQuestion);
         model.addAttribute("product",product);
-        System.out.println();
+
+
         return "menu/product/product_detail";
     }
 

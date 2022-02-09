@@ -39,13 +39,12 @@ public class QuestionService {
         return questionRepository.findList(user_id);
     }
 
-
-
+    public List<Question> findPList(Long pdct_code){
+        return questionRepository.findPList(pdct_code);
+    }
 
     public Question findOne(Long q_code){
         return questionRepository.findOne(q_code);
 
     }
-
-
 }

@@ -29,6 +29,12 @@ public class QuestionRepository {
                 .getResultList();
     }
 
+    public List<Question> findPList(Long pdct_code){
+        return em.createQuery("select q from Question q where q.product.pdct_code =: pdct_code", Question.class)
+                .setParameter("pdct_code", pdct_code)
+                .getResultList();
+    }
+
     public Question findOne(Long q_code){
         return em.createQuery("select q from Question q where q.id =: q_code", Question.class)
                 .setParameter("q_code", q_code)
