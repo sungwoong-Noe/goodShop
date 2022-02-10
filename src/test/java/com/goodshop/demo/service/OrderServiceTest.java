@@ -6,7 +6,7 @@ import com.goodshop.demo.domain.product.Product;
 import com.goodshop.demo.domain.user.Address;
 import com.goodshop.demo.domain.user.User;
 import com.goodshop.demo.exception.NotEnoughStockException;
-import com.goodshop.demo.repository.OrderRepository;
+import com.goodshop.demo.repository.order.OrderRepository;
 import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

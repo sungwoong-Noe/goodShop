@@ -1,4 +1,4 @@
-package com.goodshop.demo.repository;
+package com.goodshop.demo.repository.order;
 
 import com.goodshop.demo.domain.order.Order;
 import com.goodshop.demo.domain.order.OrderItem;

@@ -15,7 +15,7 @@ import java.util.List;
 public class Order {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="o_code")
     private Long id;
 
@@ -47,6 +47,9 @@ public class Order {
     //주문시간
     private LocalDateTime orderDate;
 
+    //취소시간
+    private LocalDateTime cancelDate;
+
 
 
 
@@ -71,6 +74,7 @@ public class Order {
      */
     public void cancel(){
         this.setStatus(OrderStatus.CANCEL);
+        this.setCancelDate(LocalDateTime.now());
         for(OrderItem orderItem : orderItems){
             orderItem.cancel();
         }

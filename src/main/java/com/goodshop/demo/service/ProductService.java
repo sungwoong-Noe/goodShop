@@ -2,7 +2,7 @@ package com.goodshop.demo.service;
 
 import com.goodshop.demo.domain.order.OrderItem;
 import com.goodshop.demo.domain.product.Product;
-import com.goodshop.demo.repository.ProductRepository;
+import com.goodshop.demo.repository.product.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

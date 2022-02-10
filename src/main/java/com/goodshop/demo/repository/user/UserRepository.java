@@ -1,4 +1,4 @@
-package com.goodshop.demo.repository;
+package com.goodshop.demo.repository.user;
 
 
 import com.goodshop.demo.domain.user.User;

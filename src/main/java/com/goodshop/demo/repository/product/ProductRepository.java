@@ -1,4 +1,4 @@
-package com.goodshop.demo.repository;
+package com.goodshop.demo.repository.product;
 
 import com.goodshop.demo.domain.product.Product;
 import lombok.RequiredArgsConstructor;

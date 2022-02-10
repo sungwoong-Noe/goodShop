@@ -2,7 +2,7 @@ package com.goodshop.demo.question;
 
 import com.goodshop.demo.domain.product.Product;
 import com.goodshop.demo.domain.question.Question;
-import com.goodshop.demo.repository.ProductRepository;
+import com.goodshop.demo.repository.product.ProductRepository;
 import com.goodshop.demo.service.QuestionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

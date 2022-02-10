@@ -1,20 +1,13 @@
 package com.goodshop.demo;
 
-import com.goodshop.demo.domain.product.Product;
 import com.goodshop.demo.domain.user.User;
-import com.goodshop.demo.repository.ProductRepository;
+import com.goodshop.demo.repository.product.ProductRepository;
 import com.goodshop.demo.session.SessionConst;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
-import java.util.List;
 
 @RequiredArgsConstructor
 @Controller

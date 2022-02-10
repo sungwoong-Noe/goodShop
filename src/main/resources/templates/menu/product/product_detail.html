@@ -47,9 +47,9 @@
                                 </li>
                             </ul>
                             <div class="mb-5">
-                                <button type ="button" onclick="count('plus');">+</button>
-                                <input type="text" id="pdct_quantity" name="pdct_quantity" th:value="1" readonly="readonly" style="text-align:center;"/>
                                 <button type="button" onclick="count('minus');">-</button>
+                                <input type="text" id="pdct_quantity" name="pdct_quantity" th:value="1" readonly="readonly" style="text-align:center;"/>
+                                <button type ="button" onclick="count('plus');">+</button>
                             </div>
                             <button class="btn btn-primary">장바구니</button>
                             <a class="btn btn-outline" th:onclick="|order();|" >구매하기</a>
@@ -71,16 +71,16 @@
         </div>
         <div class="container features">
             <p class="text-xl-left" style="font-size: xx-large">문의내역</p>
-<!--            <a href="javascript:writeBtn()" type="button" class="btn-secondary">리뷰 쓰기</a>-->
-<!--            <div id="writebutton" style="display: none;">-->
-<!--                <form action="">-->
-<!--                    <input type="text" class="form-control-sm mb-3" placeholder="제목"></input>-->
-<!--                    <input type="text" class="form-control col-sm-5 mb-3" placeholder="리뷰"></input>-->
-<!--                </form>-->
-<!--            </div>-->
+            <a href="javascript:writeBtn()" type="button" class="btn-secondary">리뷰 쓰기</a>
+            <div id="writebutton" style="display: none;">
+                <form action="">
+                    <input type="text" class="form-control-sm mb-3" placeholder="제목"></input>
+                    <input type="text" class="form-control col-sm-5 mb-3" placeholder="리뷰"></input>
+                </form>
+            </div>
             <div class="features col-sm-5" th:each="question: ${questionList}">
                 <ul>
-                    <li th:text="'[' + ${question.getProduct().getPdct_name()} + ']'"></li>
+                    <li th:text="'[' + ${question.getProduct().getPdct_name()} + ']' + ${question.getUser.getUser_id()}"></li>
                     <li th:text="${question.getQ_title()}"></li>
                     <li th:text="${question.getQ_content()}"></li>
                 </ul>
@@ -125,20 +125,13 @@
 
     function writeBtn(){
 
-        let userId = /*[[${session.loginUser?.getUser_id()}]]*/;
-        var pdctCode = /*[[${product.getPdct_code()}]]*/;
+        var userId = /*[[${session.loginUser?.getUser_id()}]]*/;
+        var pdctCode = 1;
 
-        // if(userId != null){
-        //
-        //     alert(userId);
-        //
-        //     if(document.getElementById('writebutton').style.display === 'block'){
-        //         document.getElementById('writebutton').style.display = 'none';
-        //     }else {
-        //
-        //         document.getElementById('writebutton').style.display = 'block';
-        //     }
-        // }
+        var params={
+            user_id : userId,
+            pdct_code : pdctCode
+        }
 
 
         if (userId == null){
@@ -147,16 +140,24 @@
             $.ajax(
                 {
                     type:"POST",
-                    url:"/item/" + pdctCode + "/" + userId + "/review",
-                    dataType: "JSON"
+                    url:"/item/review",
+                    contentType: 'application/json',
+                    dataType: "JSON",
+                    data: params
                 }
             )
             .success(function (){
-                if(document.getElementById('writebutton').style.display === 'block'){
-                    document.getElementById('writebutton').style.display = 'none';
-                }else {
 
-                    document.getElementById('writebutton').style.display = 'block';
+                if(data != null){
+
+                    if(document.getElementById('writebutton').style.display === 'block'){
+                        document.getElementById('writebutton').style.display = 'none';
+                    }else {
+
+                        document.getElementById('writebutton').style.display = 'block';
+                    }
+                }else {
+                    alert("제품 주문 후 작성 가능합니다.");
                 }
             })
             .fail(function (){

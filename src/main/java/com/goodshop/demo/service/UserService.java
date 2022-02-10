@@ -1,8 +1,7 @@
 package com.goodshop.demo.service;
 
 import com.goodshop.demo.domain.user.User;
-import com.goodshop.demo.repository.UserRepository;
-import com.goodshop.demo.user.LoginForm;
+import com.goodshop.demo.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

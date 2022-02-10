@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Getter @Setter
 public class ProductReview {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="review_id")
     private Long id;
 
@@ -26,6 +26,8 @@ public class ProductReview {
     private String review_title;
 
     private String review_content;
+
+    private int grade;
 
 
 
