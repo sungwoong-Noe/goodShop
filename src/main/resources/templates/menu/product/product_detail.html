@@ -1,94 +1,102 @@
 <!DOCTYPE html>
-<html lang="en" th:replace="layouts/layout :: layoutFragment(~{::main})" xmlns:th="https://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<main>
-    <div class="page-section mt-5 " style="border: 1px solid #e9e8f5;">
-        <div class="container">
-            <div class="text-left wow fadeInUp ">
-                <ul style="list-style: none;" class="pl-0">
-                    <li style="float:left;">
-                    <li>
+<html lang="en" th:replace="layouts/layout :: layoutFragment(~{::main})" xmlns:th="https://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="http://www.w3.org/1999/html">
 
-                    </li>
-                        <div class="ml-5 pl-5">
 
+    <main>
+        <div class="page-section mt-5" style="border: 1px solid #e9e8f5;">
+
+
+            <div class="container">
+                <div class="text-left wow fadeInUp ">
+                    <ul style="list-style: none;" class="pl-0">
+                        <li style="float:left;">
+                        <li>
+
+                        </li>
+                            <div class="ml-5 pl-5">
+
+                            </div>
+                        </li>
+                    </ul>
+
+                </div>
+
+                <div class="row mt-5 text-center">
+                    <div class="col-lg-6 py-3 wow fadeInUp">
+                        <div class="display-3">
+                            <img th:src="|/images/${product.getPdct_image()}|"  width="540" alt="">
                         </div>
-                    </li>
-                </ul>
+                    </div>
+                    <div class="col-lg-6 py-3 text-left">
+                        <form th:href="@{/order}"  method="post" name="pdct_form">
+                                <div th:if="${session.loginUser != null}">
+                                    <input type="hidden" th:value="${product.getPdct_code()}" name="pdct_code" id="pdct_code">
+                                    <input type="hidden"  th:value="${session.loginUser.getUser_id()}"></input>
+                                </div>
 
-            </div>
-
-            <div class="row mt-5 text-center">
-                <div class="col-lg-6 py-3 wow fadeInUp">
-                    <div class="display-3">
-                        <img th:src="|/images/${product.getPdct_image()}|"  width="540" alt="">
+                                <div class="features pt-4 pb-2">
+                                    <b th:text="${product.getPdct_name()}">상품이름</b>
+                                    <h5 class="pt-5" th:text="${product.getPdct_price()} + '원'" > 상품가격</h5><p th:text="'(' + ${product.getPdct_quantity()}  + '개)'"></p>
+                                </div>
+                                <h5 class="pt-3 mb-3" style="font-size: 15px;">배송정보</h5>
+                                <ul style="list-style: none;" class="pl-0">
+                                    <li style="float:left;">
+                                        <div style="width: 100px;">배송비</div>
+                                    </li>
+                                    <li>
+                                        <div style="font-size: 10px;">
+                                            <div>해당 브랜드의 제품은 무료배송됩니다.</div>
+                                            <div>제주도를 포함한 도서/산간지역은 추개 배송비 3,000원</div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="mb-5">
+                                    <button type="button" onclick="count('minus');">-</button>
+                                    <input type="text" id="pdct_quantity" name="pdct_quantity" th:value="1" readonly="readonly" style="text-align:center;"/>
+                                    <button type ="button" onclick="count('plus');">+</button>
+                                </div>
+                                <button class="btn btn-primary">장바구니</button>
+                                <a class="btn btn-outline" th:onclick="|order();|" >구매하기</a>
+                                <a th:if="${session.loginUser?.getUser_name() == product.getSeller()}" th:href="@{/item/} + ${product.getPdct_code} + @{/edit}"> 수정</a>
+                            </form>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-6 py-3 text-left">
-                    <form th:href="@{/order}"  method="post" name="pdct_form">
-                            <div th:if="${session.loginUser != null}">
-                                <input type="hidden" th:value="${product.getPdct_code()}" name="pdct_code" id="pdct_code">
-                                <input type="hidden"  th:value="${session.loginUser.getUser_id()}"></input>
-                            </div>
-
-                            <div class="features pt-4 pb-2">
-                                <b th:text="${product.getPdct_name()}">상품이름</b>
-                                <h5 class="pt-5" th:text="${product.getPdct_price()} + '원'" > 상품가격</h5><p th:text="'(' + ${product.getPdct_quantity()}  + '개)'"></p>
-                            </div>
-                            <h5 class="pt-3 mb-3" style="font-size: 15px;">배송정보</h5>
-                            <ul style="list-style: none;" class="pl-0">
-                                <li style="float:left;">
-                                    <div style="width: 100px;">배송비</div>
-                                </li>
-                                <li>
-                                    <div style="font-size: 10px;">
-                                        <div>해당 브랜드의 제품은 무료배송됩니다.</div>
-                                        <div>제주도를 포함한 도서/산간지역은 추개 배송비 3,000원</div>
-                                    </div>
-                                </li>
-                            </ul>
-                            <div class="mb-5">
-                                <button type="button" onclick="count('minus');">-</button>
-                                <input type="text" id="pdct_quantity" name="pdct_quantity" th:value="1" readonly="readonly" style="text-align:center;"/>
-                                <button type ="button" onclick="count('plus');">+</button>
-                            </div>
-                            <button class="btn btn-primary">장바구니</button>
-                            <a class="btn btn-outline" th:onclick="|order();|" >구매하기</a>
-                            <a th:if="${session.loginUser?.getUser_name() == product.getSeller()}" th:href="@{/item/} + ${product.getPdct_code} + @{/edit}"> 수정</a>
-                        </form>
+            </div> <!-- .container -->
+            <div class="container" id="wrap">
+                <a href="#" id="back-to-top"></a>
+                <div class="page-section">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            상품설명
+                            <img th:src="|/images/${product.getDetail_image()}|"  alt="">
+                        </div>
                     </div>
                 </div>
+                </a>
             </div>
-        </div> <!-- .container -->
-        <div class="container">
-            <div class="page-section">
-                <div class="row">
-                    <div class="col-lg-6">
-                        상품설명
-                        <img th:src="|/images/${product.getDetail_image()}|"  alt="">
-                    </div>
+            </div>
+            <div class="container features">
+                <p class="text-xl-left" style="font-size: xx-large">문의내역</p>
+                <a href="javascript:writeBtn()" type="button" class="btn-secondary">리뷰 쓰기</a>
+                <div id="writebutton" style="display: none;">
+                    <form action="">
+                        <input type="text" class="form-control-sm mb-3" placeholder="제목"></input>
+                        <input type="text" class="form-control col-sm-5 mb-3" placeholder="리뷰"></input>
+                    </form>
+                </div>
+                <div class="features col-sm-5" th:each="question: ${questionList}">
+                    <ul>
+                        <li th:text="'[' + ${question.getProduct().getPdct_name()} + ']' + ${question.getUser.getUser_id()}"></li>
+                        <li th:text="${question.getQ_title()}"></li>
+                        <li th:text="${question.getQ_content()}"></li>
+                    </ul>
                 </div>
             </div>
-        </div>
-        <div class="container features">
-            <p class="text-xl-left" style="font-size: xx-large">문의내역</p>
-            <a href="javascript:writeBtn()" type="button" class="btn-secondary">리뷰 쓰기</a>
-            <div id="writebutton" style="display: none;">
-                <form action="">
-                    <input type="text" class="form-control-sm mb-3" placeholder="제목"></input>
-                    <input type="text" class="form-control col-sm-5 mb-3" placeholder="리뷰"></input>
-                </form>
-            </div>
-            <div class="features col-sm-5" th:each="question: ${questionList}">
-                <ul>
-                    <li th:text="'[' + ${question.getProduct().getPdct_name()} + ']' + ${question.getUser.getUser_id()}"></li>
-                    <li th:text="${question.getQ_title()}"></li>
-                    <li th:text="${question.getQ_content()}"></li>
-                </ul>
-            </div>
-        </div>
-    </div> <!-- .page-section -->
+        </div> <!-- .page-section -->
+    </main>
 
-</main>
 
 
 </html>
@@ -188,6 +196,21 @@
 
 
     }
+
+    $(function(){
+        $('#back-to-top').on('click',function(e){
+            e.preventDefault();
+            $('html,body').animate({scrollTop:0},600);
+        });
+
+        $(window).scroll(function() {
+            if ($(document).scrollTop() > 100) {
+                $('#back-to-top').addClass('show');
+            } else {
+                $('#back-to-top').removeClass('show');
+            }
+        });
+    });
 
 
 

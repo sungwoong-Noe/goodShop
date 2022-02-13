@@ -15,16 +15,16 @@ public class ReviewController {
 
     private final ReviewService reviewService;
     private final ReviewRepository reviewRepository;
-
-    @ResponseBody
-    @GetMapping("/item/review/{user_id}")
-    public List<OrderItem> r_auth(@PathVariable String user_id){
-
-
-        List<OrderItem> orderItems = reviewRepository.test5(user_id);
-
-        return orderItems;
-    }
+//
+//    @ResponseBody
+//    @GetMapping("/item/review/{user_id}")
+//    public List<OrderItem> r_auth(@PathVariable String user_id){
+//
+//
+//
+//
+//        return orderItems;
+//    }
 
 
 
