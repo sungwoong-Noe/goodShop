@@ -69,8 +69,12 @@
                 <div class="page-section">
                     <div class="row">
                         <div class="col-lg-6">
-                            상품설명
-                            <img th:src="|/images/${product.getDetail_image()}|"  alt="">
+                            <p>상품설명</p>
+                            <div class="detail-relative" id="detail-section">
+                                <img th:src="|/images/${product.getDetail_image()}|" alt="" id="detail-img" class="detail-hide">
+                            </div>
+                            <a href="javascript:detailBtn()" type="button" class="btn btn-secondary" id="detailBtn" style="width: 860px;">상세보기</a>
+                            <a href="javascript:hideBtn()" type="button" class="btn btn-secondary" id="hideBtn" style="width: 860px; display: none">상품설명 닫기</a>
                         </div>
                     </div>
                 </div>
@@ -79,7 +83,7 @@
             </div>
             <div class="container features">
                 <p class="text-xl-left" style="font-size: xx-large">문의내역</p>
-                <a href="javascript:writeBtn()" type="button" class="btn-secondary">리뷰 쓰기</a>
+                <a href="javascript:writeBtn()" type="button" class="btn btn-secondary">리뷰 쓰기</a>
                 <div id="writebutton" style="display: none;">
                     <form action="">
                         <input type="text" class="form-control-sm mb-3" placeholder="제목"></input>
@@ -197,6 +201,8 @@
 
     }
 
+
+    //맨 위로 버튼
     $(function(){
         $('#back-to-top').on('click',function(e){
             e.preventDefault();
@@ -212,6 +218,22 @@
         });
     });
 
+    function detailBtn(){
+        document.getElementById('detailBtn').style.display ='none';
+        document.getElementById('detail-section').classList.remove('detail-relative');
+        document.getElementById('detail-img').classList.remove('detail-hide');
+        document.getElementById('hideBtn').style.display ='block';
+
+
+    }
+
+    function hideBtn(){
+        document.getElementById('hideBtn').style.display ='none';
+        document.getElementById('detail-section').classList.add('detail-relative');
+        document.getElementById('detail-img').classList.add('detail-hide');
+        document.getElementById('detailBtn').style.display ='block';
+
+    }
 
 
 
