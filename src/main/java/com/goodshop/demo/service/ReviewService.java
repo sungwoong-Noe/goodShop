@@ -19,22 +19,10 @@ public class ReviewService {
 
     private final ReviewRepository reviewRepository;
 
-//    public int r_auth(ReviewForm reviewForm){
 //
-//       return  reviewRepository.r_auth(reviewForm.getPdct_code(), reviewForm.getUser_id());
+//    public OrderItem review_auth(Long pdct_code, String user_id){
+//        List<OrderItem> orderItem = reviewRepository.review_auth(pdct_code, user_id);
+//        return
 //    }
-//
-//    public OrderItem test(Long pdct_code,String user_id) {
-//
-//        return reviewRepository.test2(pdct_code, user_id);
-//
-//    }
-//
-//    public OrderItem test3(Long pdct_code, String user_id){
-//
-//        return reviewRepository.test3(pdct_code).filter(r -> r.getOrder().getUser().getUser_id().equals(user_id)).orElse(null);
-//
-//    }
-
 
 }

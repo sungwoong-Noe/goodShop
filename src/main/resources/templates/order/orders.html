@@ -47,7 +47,7 @@
                         <p th:text="${order.getUser().getUser_name()}" id="order_name" style="font-weight: bold; font-size: 15px;"></p>
                         <p th:text="${order.getUser().getUser_phone()}"></p>
                     </div>
-                    <a  th:href="@{/orderList/{u_id}(u_id=${order.getUser().getUser_id()})}"  class="btn-secondary col-sm-12">주문 내역보기</a>
+                    <a  th:href="@{/orderList/{u_id}(u_id=${order.getUser().getUser_id()})}"  class="btn btn-secondary col-sm-12">주문 내역보기</a>
                 </div>
             </div>
 

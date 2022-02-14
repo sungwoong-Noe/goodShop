@@ -83,19 +83,22 @@
             </div>
             <div class="container features">
                 <p class="text-xl-left" style="font-size: xx-large">문의내역</p>
+                <div th:each="question:${questionList}" class="features">
+                    <ul style="list-style: none;">
+                        <li th:text="${question.getUser().user_id}" class="font-weight-bold"></li>
+                        <li th:text="${question.getQ_date()}"></li>
+                        <li ><a href="javascript:questionHide()" th:text="${question.getQ_title()}"></a></li>
+                        <li th:text="${question.getQ_content()}" id="q_content" style="display: none"></li>
+                    </ul>
+                </div>
+
+
                 <a href="javascript:writeBtn()" type="button" class="btn btn-secondary">리뷰 쓰기</a>
                 <div id="writebutton" style="display: none;">
                     <form action="">
                         <input type="text" class="form-control-sm mb-3" placeholder="제목"></input>
                         <input type="text" class="form-control col-sm-5 mb-3" placeholder="리뷰"></input>
                     </form>
-                </div>
-                <div class="features col-sm-5" th:each="question: ${questionList}">
-                    <ul>
-                        <li th:text="'[' + ${question.getProduct().getPdct_name()} + ']' + ${question.getUser.getUser_id()}"></li>
-                        <li th:text="${question.getQ_title()}"></li>
-                        <li th:text="${question.getQ_content()}"></li>
-                    </ul>
                 </div>
             </div>
         </div> <!-- .page-section -->
@@ -218,6 +221,8 @@
         });
     });
 
+
+    //상세설명 펼치기 버튼
     function detailBtn(){
         document.getElementById('detailBtn').style.display ='none';
         document.getElementById('detail-section').classList.remove('detail-relative');
@@ -227,11 +232,23 @@
 
     }
 
+    //상세설명 접기 버튼
     function hideBtn(){
         document.getElementById('hideBtn').style.display ='none';
         document.getElementById('detail-section').classList.add('detail-relative');
         document.getElementById('detail-img').classList.add('detail-hide');
         document.getElementById('detailBtn').style.display ='block';
+    }
+
+    //문의내용 접기 펼치기
+    function questionHide(){
+
+        if(document.getElementById('q_content').style.display == 'none'){
+            document.getElementById('q_content').style.display = 'block';
+        }else{
+            document.getElementById('q_content').style.display = 'none';
+        }
+
 
     }
 
