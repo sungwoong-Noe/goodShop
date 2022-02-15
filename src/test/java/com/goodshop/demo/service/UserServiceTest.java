@@ -1,7 +1,7 @@
 package com.goodshop.demo.service;
 
 import com.goodshop.demo.domain.user.User;
-import com.goodshop.demo.repository.UserRepository;
+import com.goodshop.demo.repository.user.UserRepository;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;

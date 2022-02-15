@@ -36,6 +36,4 @@ public class ProductRepository {
         return em.createQuery("select p from Product p", Product.class)
                 .getResultList();
     }
-
-
 }

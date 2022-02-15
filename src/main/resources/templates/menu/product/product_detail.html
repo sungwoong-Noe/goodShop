@@ -82,10 +82,11 @@
             </div>
             </div>
             <div class="container features">
-                <p class="text-xl-left" style="font-size: xx-large">문의내역</p>
-                <div th:each="question:${questionList}" class="features">
+                <p class="text-xl-left" style="font-size: x-large">문의내역 <a href="javascript:q_button()" type="button" class="btn btn-outline rounded-pill" style="float: right">문의하기</a></p>
+
+                <div th:each="question:${questionList}" class="features" style="margin-bottom: 20px; margin-top: 20px;">
                     <ul style="list-style: none;">
-                        <li th:text="${question.getUser().user_id}" class="font-weight-bold"></li>
+                        <li th:text="'작성자' + ${question.getUser().user_id}" class="font-weight-bold"></li>
                         <li th:text="${question.getQ_date()}"></li>
                         <li ><a href="javascript:questionHide()" th:text="${question.getQ_title()}"></a></li>
                         <li th:text="${question.getQ_content()}" id="q_content" style="display: none"></li>
@@ -93,13 +94,13 @@
                 </div>
 
 
-                <a href="javascript:writeBtn()" type="button" class="btn btn-secondary">리뷰 쓰기</a>
-                <div id="writebutton" style="display: none;">
-                    <form action="">
-                        <input type="text" class="form-control-sm mb-3" placeholder="제목"></input>
-                        <input type="text" class="form-control col-sm-5 mb-3" placeholder="리뷰"></input>
-                    </form>
-                </div>
+<!--                <a href="javascript:writeBtn()" type="button" class="btn btn-secondary">리뷰 쓰기</a>-->
+<!--                <div id="writebutton" style="display: none;">-->
+<!--                    <form action="">-->
+<!--                        <input type="text" class="form-control-sm mb-3" placeholder="제목"></input>-->
+<!--                        <input type="text" class="form-control col-sm-5 mb-3" placeholder="리뷰"></input>-->
+<!--                    </form>-->
+<!--                </div>-->
             </div>
         </div> <!-- .page-section -->
     </main>
@@ -184,7 +185,7 @@
 
 
 
-    /*]]*/
+
 
     function order(){
 
@@ -248,10 +249,20 @@
         }else{
             document.getElementById('q_content').style.display = 'none';
         }
-
-
     }
 
+    //문의하기 버튼
+    function q_button(){
+        var loginuser = /*[[${session.loginUser?.getUser_id()}]]*/;
+        if(loginuser == null){
+            alert("로그인 후 문의해주세요");
+        }else if(loginuser != null){
+            location.href="http://localhost:8080/item/qna";
+        }
+    }
+
+
+    /*]]*/
 
 
 

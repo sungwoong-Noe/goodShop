@@ -1,5 +1,6 @@
 package com.goodshop.demo.domain.product;
 
+import com.goodshop.demo.domain.order.Order;
 import com.goodshop.demo.domain.order.OrderItem;
 import com.goodshop.demo.exception.NotEnoughStockException;
 import lombok.Getter;
@@ -45,10 +46,11 @@ public class Product {
     //판매자
     private String seller;
 
+    @OneToMany
+    @JoinColumn(name = "od_code")
+    private List<OrderItem> orderItems = new ArrayList<>();
 
 
-
-    
     //비지니스 로직
     /**
      * stock증가

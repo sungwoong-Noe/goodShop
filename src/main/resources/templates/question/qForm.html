@@ -7,10 +7,10 @@
       <h2 class="login"><b>문의하기</b></h2>
       <form action="/item/qna" th:object="${qForm}" method="post">
         <div class="row mb-3">
-          <div class="row col-sm-3 login-id">
+          <div class="row col-sm-5 login-id">
             <label for="product">문의 상품</label>
             <select id="product" class="form-control" name="pdct_code">
-              <option value="">회원선택</option>
+              <option value="">상품선택</option>
               <option th:each="products : ${products}"   th:value="${products.pdct_code}" th:text="${products.getPdct_name()}"></option>
             </select>
           </div>

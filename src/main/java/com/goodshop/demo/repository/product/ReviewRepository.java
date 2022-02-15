@@ -20,10 +20,11 @@ public class ReviewRepository {
     @PersistenceContext
     private final EntityManager em;
 
-   public List<OrderItem> review_auth(Long pdct_code, String user_id){
-          Query query=  em.createQuery("select d from OrderItem d join d.order where d.order.user.user_id =:user_id and d.product.pdct_code=:pdct_code", OrderItem.class).setParameter("user_id", user_id).setParameter("pdct_code", pdct_code);
-          return query.getResultList();
-
+   public OrderItem review_auth(Long o_code, Long pdct_code) {
+       return em.createQuery("select d from OrderItem d  join  d.order where d.id=:o_code and d.product.pdct_code=:pdct_code", OrderItem.class)
+               .setParameter("o_code", o_code).setParameter("pdct_code", pdct_code)
+               .getSingleResult();
    }
+
 
 }

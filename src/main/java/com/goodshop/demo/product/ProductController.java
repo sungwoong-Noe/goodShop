@@ -44,33 +44,43 @@ public class ProductController {
 
         model.addAttribute("productForm", new ProductForm());
 
+
+
         return "menu/product/newitem";
     }
 
     @PostMapping("/item/new")
-    public String newItem(@Valid ProductForm productForm, BindingResult bindingResult, RedirectAttributes redirectAttributes) throws IOException {
+    public String newItem(@Valid ProductForm productForm, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) throws IOException {
         if(bindingResult.hasErrors()){
             return "menu/product/newitem";
         }
 
-        UploadFile attachFile = fileStore.storeFile(productForm.getPdct_image());
-        UploadFile attachFile2 = fileStore.storeFile(productForm.getDetail_image());
+        try{
+            UploadFile attachFile = fileStore.storeFile(productForm.getPdct_image());
+            UploadFile attachFile2 = fileStore.storeFile(productForm.getDetail_image());
 
-        Product product = new Product();
-        product.setPdct_name(productForm.getPdct_name());
-        product.setPdct_price(productForm.getPdct_price());
-        product.setPdct_quantity(productForm.getPdct_quantity());
-        product.setPdct_detail(productForm.getPdct_detail());
-        product.setPdct_sell(productForm.getPdct_sell());
-        product.setSeller(productForm.getSeller());
+            Product product = new Product();
+            product.setPdct_name(productForm.getPdct_name());
+            product.setPdct_price(productForm.getPdct_price());
+            product.setPdct_quantity(productForm.getPdct_quantity());
+            product.setPdct_detail(productForm.getPdct_detail());
+            product.setPdct_sell(productForm.getPdct_sell());
+            product.setSeller(productForm.getSeller());
 
-        product.setPdct_image(attachFile.getStoreFileName());
-        product.setDetail_image(attachFile2.getStoreFileName());
+            product.setPdct_image(attachFile.getStoreFileName());
+            product.setDetail_image(attachFile2.getStoreFileName());
 
-        productService.saveProduct(product);
+            productService.saveProduct(product);
 
 
-        redirectAttributes.addAttribute("pdct_code", product.getPdct_code());
+            redirectAttributes.addAttribute("pdct_code", product.getPdct_code());
+
+        }catch (Exception e){
+
+            model.addAttribute("imageNull", "이미지를 등록해주세요.");
+            return "menu/product/newitem";
+        }
+
 
         return "redirect:/item";
     }
