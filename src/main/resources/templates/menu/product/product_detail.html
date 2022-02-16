@@ -84,12 +84,12 @@
             <div class="container features">
                 <p class="text-xl-left" style="font-size: x-large">문의내역 <a href="javascript:q_button()" type="button" class="btn btn-outline rounded-pill" style="float: right">문의하기</a></p>
 
-                <div th:each="question:${questionList}" class="features" style="margin-bottom: 20px; margin-top: 20px;">
+                <div th:each="question:${questionList}" class="features" style="margin-bottom: 10px; margin-top: 10px;">
                     <ul style="list-style: none;">
-                        <li th:text="'작성자' + ${question.getUser().user_id}" class="font-weight-bold"></li>
+                        <li th:text="'작성자: ' + ${question.getUser().user_id}" class="font-weight-bold"></li>
                         <li th:text="${question.getQ_date()}"></li>
-                        <li ><a href="javascript:questionHide()" th:text="${question.getQ_title()}"></a></li>
-                        <li th:text="${question.getQ_content()}" id="q_content" style="display: none"></li>
+                        <li ><a href="javascript:questionHide()" th:text="'문의제목: ' + ${question.getQ_title()}"></a></li>
+                        <li th:text="'문의내용: ' + ${question.getQ_content()}" id="q_content" style="display: none"></li>
                     </ul>
                 </div>
 

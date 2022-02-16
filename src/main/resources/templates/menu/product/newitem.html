@@ -19,12 +19,12 @@
                         <input type="text" class="form-control" th:field="*{pdct_quantity}" th:placeholder="상품재고" th:class="${#fields.hasErrors('pdct_quantity')}  ? 'form-control fieldError' : 'form-control'">
                         <p th:if="${#fields.hasErrors('pdct_quantity')}" th:errors="*{pdct_quantity}">Incorrect date</p>
                     </div>
-                    <div class="col-sm-2 login-id">
+                    <div class="col-sm-5 login-id">
                         <label th:for="*{pdct_image}">썸네일 사진</label>
                         <input type="file" class="form-control" th:field="*{pdct_image}" th:placeholder="상품사진" th:class="${#fields.hasErrors('pdct_image')}  ? 'form-control fieldError' : 'form-control'">
                         <p th:if="${#fields.hasErrors('pdct_image')}" th:errors="*{pdct_image}">Incorrect date</p>
                     </div>
-                    <div class="col-sm-3 login-id">
+                    <div class="col-sm-5 login-id">
                         <label th:for="*{detail_image}">상세 사진</label>
                         <input type="file" class="form-control-file float-right" th:field="*{detail_image}" th:placeholder="상세이미지" th:class="${#fields.hasErrors('detail_image')}  ? 'form-control fieldError' : 'form-control'">
                         <p th:if="${#fields.hasErrors('detail_image')}" th:errors="*{detail_image}">Incorrect date</p>
