@@ -75,45 +75,79 @@
         <h2 class="title-section"><span class="marked">Recommended </span> products</h2>
         <div class="divider mx-auto"></div>
       </div>
+      <div class="row mt-5 text-center">
 
+        <div class="col-lg-4 py-3 wow fadeInUp">
+              <div class="display-3">
+                <a th:href="@{/item/{pdct_code}(pdct_code=${product[0].getPdct_code()})}">
+                  <img th:src="|/images/${product[0].getPdct_image()}|" width="350" alt="">
+                </a>
+              </div>
+              <div class="text-left">
+                 <a th:href="@{/item/{pdct_code}(pdct_code = ${product[0]?.getPdct_code()})}" th:text="${product[0].getPdct_name()}"></a>
+                 <p><b th:text="${product[0].getPdct_price()}"></b>원</p>
+                 <div class="freeShip">무료배송</div>
+              </div>
+        </div>
+        <div class="col-lg-4 py-3 wow fadeInUp">
+          <div class="display-3">
+            <a th:href="@{/item/{pdct_code}(pdct_code=${product[1].getPdct_code()})}">
+              <img th:src="|/images/${product[1]?.getPdct_image()}|" width="350" alt="">
+            </a>
+          </div>
+          <div class="text-left">
+            <a th:href="@{/item/{pdct_code}(pdct_code = ${product[1].getPdct_code()})}" th:text="${product[1]?.getPdct_name()}"></a>
+            <p><b th:text="${product[1].getPdct_price()}"></b>원</p>
+            <div class="freeShip">무료배송</div>
+          </div>
+        </div>
+        <div class="col-lg-4 py-3 wow fadeInUp">
+          <div class="display-3">
+            <a th:href="@{/item/{pdct_code}(pdct_code=${product[2].getPdct_code()})}">
+              <img th:src="|/images/${product[2].getPdct_image()}|" width="350" alt="">
+            </a>
+          </div>
+          <div class="text-left">
+            <a th:href="@{/item/{pdct_code}(pdct_code = ${product[2].getPdct_code()})}" th:text="${product[2].getPdct_name()}"></a>
+            <p><b th:text="${product[2].getPdct_price()}"></b>원</p>
+            <div class="freeShip">무료배송</div>
+          </div>
+        </div>
 
-<!--      <div class="row mt-5 text-center">-->
-
-<!--        <div class="col-lg-4 py-3 wow fadeInUp">-->
-<!--              <div class="display-3">-->
-<!--                <img th:src="|/images/${product[0].getPdct_image()}|" width="350" alt="">-->
-<!--              </div>-->
-<!--              <div class="text-left">-->
-<!--                 <a th:href="@{/item/{pdct_code}(pdct_code = ${product[0]?.getPdct_code()})}" th:text="${product[0].getPdct_name()}"></a>-->
-<!--                 <p><b th:text="${product[0].getPdct_price()}"></b>원</p>-->
-<!--                 <div class="freeShip">무료배송</div>-->
-<!--              </div>-->
-<!--        </div>-->
-<!--        <div class="col-lg-4 py-3 wow fadeInUp">-->
-<!--          <div class="display-3">-->
-<!--            <img th:src="|/images/${product[1]?.getPdct_image()}|" width="350" alt="">-->
-<!--          </div>-->
-<!--          <div class="text-left">-->
-<!--            <a th:href="@{/item/{pdct_code}(pdct_code = ${product[1].getPdct_code()})}" th:text="${product[1]?.getPdct_name()}"></a>-->
-<!--            <p><b th:text="${product[1].getPdct_price()}"></b>원</p>-->
-<!--            <div class="freeShip">무료배송</div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="col-lg-4 py-3 wow fadeInUp">-->
-<!--          <div class="display-3">-->
-<!--            <img th:src="|/images/${product[2].getPdct_image()}|" width="350" alt="">-->
-<!--          </div>-->
-<!--          <div class="text-left">-->
-<!--            <a th:href="@{/item/{pdct_code}(pdct_code = ${product[2].getPdct_code()})}" th:text="${product[2].getPdct_name()}"></a>-->
-<!--            <p><b th:text="${product[2].getPdct_price()}"></b>원</p>-->
-<!--            <div class="freeShip">무료배송</div>-->
-<!--          </div>-->
-<!--        </div>-->
-
-<!--     </div>-->
+     </div>
 
     </div> <!-- .container -->
   </div> <!-- .page-section -->
+
+  <div class="page-section bg-light">
+    <div class="container">
+
+      <div class="owl-carousel wow fadeInUp" id="testimonials">
+        <div th:each="product:${product}">
+          <div class="item">
+            <div class="row align-items-center">
+              <div class="col-md-6 py-3">
+                <div class="testi-image">
+                  <a th:href="@{/item/{pdct_code}(pdct_code=${product.getPdct_code()})}">
+                    <img th:src="|/images/${product.getPdct_image()}|" th:href="@{/item/{pdct_code}(pdct_code=${product.getPdct_code()})}" width="300" alt="" >
+                  </a>
+                </div>
+              </div>
+              <div class="col-md-3 py-3">
+                <div class="testi-content">
+                  <p th:text="${product.getPdct_detail()}"></p>
+                  <div class="entry-footer">
+                    <strong><a th:href="@{/item/{pdct_code}(pdct_code=${product.getPdct_code()})}" th:text="${product.getPdct_name()}"></a></strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> <!-- .container -->
+  </div> <!-- .page-section -->
+
 
   <div class="page-section border-top">
     <div class="container">
@@ -186,50 +220,6 @@
             </div>
             <div class="footer">
               <a href="#" class="btn btn-outline rounded-pill">Choose Plan</a>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div> <!-- .container -->
-  </div> <!-- .page-section -->
-
-  <div class="page-section bg-light">
-    <div class="container">
-
-      <div class="owl-carousel wow fadeInUp" id="testimonials">
-        <div class="item">
-          <div class="row align-items-center">
-            <div class="col-md-6 py-3">
-              <div class="testi-image">
-                <img src="/img/person/person_1.jpg" alt="">
-              </div>
-            </div>
-            <div class="col-md-3 py-3">
-              <div class="testi-content">
-                <p>Necessitatibus ipsum magni accusantium consequatur delectus a repudiandae nemo quisquam dolorum itaque, tenetur, esse optio eveniet beatae explicabo sapiente quo.</p>
-                <div class="entry-footer">
-                  <strong>Melvin Platje</strong> &mdash; <span class="text-grey">CEO Slurin Group</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="item">
-          <div class="row align-items-center">
-            <div class="col-md-6 py-3">
-              <div class="testi-image">
-                <img src="/img/person/person_2.jpg" alt="">
-              </div>
-            </div>
-            <div class="col-md-6 py-3">
-              <div class="testi-content">
-                <p>Repudiandae vero assumenda sequi labore ipsum eos ducimus provident a nam vitae et, dolorum temporibus inventore quaerat consectetur quos! Animi, qui ratione?</p>
-                <div class="entry-footer">
-                  <strong>George Burke</strong> &mdash; <span class="text-grey">CEO Letro</span>
-                </div>
-              </div>
             </div>
           </div>
         </div>

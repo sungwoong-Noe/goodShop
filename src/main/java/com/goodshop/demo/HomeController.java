@@ -15,12 +15,14 @@ public class HomeController {
 
     private final ProductRepository productRepository;
 
+
     @RequestMapping("/")
     public String home(@SessionAttribute(name = SessionConst.Login_User, required = false) User user, Model model){
 
 
             model.addAttribute("product", productRepository.findAll());
             model.addAttribute("login", user);
+
 
         return "index";
     }
