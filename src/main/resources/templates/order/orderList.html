@@ -21,6 +21,7 @@
                         <td th:text="${order?.getOrder().getUser().getUser_name()}"></td>
                         <td>
                             <a th:if="${order?.getOrder().getStatus().name() == 'ORDER'}" href="#" th:href="'javascript:orderCancel('+ ${order.getOrder().getId()} + ')'" class="btn-danger">주문취소</a>
+                            <p th:if="${order?.getOrder().getStatus().name() == 'CANCEL'}" th:text="${order.getOrder().getCancelDate()}"></p>
                         </td>
                     </tr>
                 </table>
