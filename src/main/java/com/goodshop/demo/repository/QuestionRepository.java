@@ -19,8 +19,16 @@ public class QuestionRepository {
 
 
     public void save(Question question){
-        question.setQ_date(LocalDateTime.now());
-        em.persist(question);
+
+        if(question.getId() == null){
+            question.setQ_date(LocalDateTime.now());
+            em.persist(question);
+        }else{
+            question.setQ_date(LocalDateTime.now());
+            em.merge(question);
+        }
+
+
     }
 
     public List<Question> findList(String user_id){
@@ -40,5 +48,12 @@ public class QuestionRepository {
                 .setParameter("q_code", q_code)
                 .getSingleResult();
     }
+
+
+    public void deleteOne(Long q_code){
+        Question one = findOne(q_code);
+        em.remove(one);
+    }
+
 
 }

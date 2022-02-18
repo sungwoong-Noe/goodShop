@@ -11,6 +11,8 @@ import javax.validation.constraints.Size;
 @Getter @Setter
 public class QuestionForm {
 
+    private Long q_code;
+
     private String user_id;
 
     private Long pdct_code;

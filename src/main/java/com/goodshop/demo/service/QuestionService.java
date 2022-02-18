@@ -47,4 +47,24 @@ public class QuestionService {
         return questionRepository.findOne(q_code);
 
     }
+
+    @Transactional
+    public void updateQ(QuestionForm questionForm){
+
+        User user = userRepository.findOne(questionForm.getUser_id());
+        Product product = productRepository.findOne(questionForm.getPdct_code());
+
+        Question question = Question.createQuestion(user, product, questionForm);
+        question.setId(questionForm.getQ_code());
+
+        questionRepository.save(question);
+
+    }
+
+    @Transactional
+    public void delQ(Long q_code){
+        questionRepository.deleteOne(q_code);
+    }
+
+
 }

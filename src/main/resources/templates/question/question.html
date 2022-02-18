@@ -6,11 +6,12 @@
         <div class="container">
             <h2 class="login text-center"><b>문의상세</b></h2>
                 <div class="row mb-3">
-                    <div class="col-sm-5 login-id">
-                        <input type="text" class="form-control" th:value="${question.getQ_title()}" readonly>
-                    </div>
+
                     <div class="col-sm-5 login-id">
                         <input type="text" class="form-control" th:value="${question.getUser().getUser_id()}" readonly>
+                    </div>
+                    <div class="col-sm-5 login-id">
+                        <input type="text" class="form-control" th:value="${question.getQ_title()}" readonly>
                     </div>
                     <div class="col-sm-5 login-id">
                         <input type="text" class="form-control" th:value="${question.getQ_content()}" readonly>
@@ -21,10 +22,16 @@
                     <div class="col-sm-5 login-id">
                         <input type="text" class="form-control" th:value="${question.getQ_date()}" readonly>
                     </div>
+                    <div class="col-sm-5 login-id float-right">
+                        <a th:href="@{/item/qna/{q_code}/update(q_code = ${question.getId()})}" class="btn btn-primary">수정하기</a>
+                        <a th:href="@{'/item/qnaList/' +${session.loginUser.getUser_id()}}" class="btn btn-secondary">목록으로</a>
+                        <a th:href="@{'/item/qna/' +${question.getId()} +'/del/' +${question.getUser().getUser_id()}}" class="btn btn-danger">삭제하기</a>
+                    </div>
 
                 </div>
             </form>
         </div>
 
     </div>
+
 </main>

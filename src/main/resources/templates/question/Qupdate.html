@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="layouts/layout :: layoutFragment(~{::main})" xmlns:th="https://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<main>
+    <div class="page-section">
+        <div class="container">
+            <h2 class="login text-center"><b>문의상세</b></h2>
+            <form action="" th:object="${qForm}" method="post">
+                <div class="row mb-3">
+
+                    <div class="col-sm-5 login-id">
+                        <input type="text" class="form-control" th:field="*{user_id}" readonly>
+                    </div>
+                    <div class="col-sm-5 login-id">
+                        <input type="text" class="form-control" th:field="*{q_title}"  placeholder="문의제목">
+                    </div>
+                    <div class="col-sm-5 login-id">
+                        <input type="text" class="form-control" th:field="*{q_content}"  placeholder="문의내용">
+                    </div>
+                    <div class="col-sm-5 login-id">
+                        <input type="text" class="form-control" th:placeholder="${q.getProduct().getPdct_name()}" readonly>
+                        <input type="hidden" th:field="*{pdct_code}">
+                        <input type="hidden" th:field="*{q_code}">
+                    </div>
+                    <div class="col-sm-5 login-id">
+                        <input type="text" class="form-control" th:placeholder="${q.getQ_date()}" readonly>
+                    </div>
+                    <div class="col-sm-5 login-id">
+<!--                        <a th:href="@{/item/qna/{pdct_code}/update(pdct_code = ${question.getProduct().getPdct_code()})}" class="btn btn-danger">수정하기</a>-->
+                        <button type="submit" class="btn btn-primary">수정하기</button>
+                        <button  onclick="history.back()" class="btn btn-outline">취소</button>
+
+                    </div>
+
+                </div>
+            </form>
+            </form>
+        </div>
+
+    </div>
+    <script th:inline="javascript">
+
+        function updateBtn(pdct_code){
+            if(confirm('수정하시겠습니까?')){
+                document.getElementById('updateForm').submit();
+            }
+        }
+    </script>
+</main>
