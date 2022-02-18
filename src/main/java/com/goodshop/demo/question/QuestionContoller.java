@@ -3,6 +3,7 @@ package com.goodshop.demo.question;
 import com.goodshop.demo.domain.product.Product;
 import com.goodshop.demo.domain.question.Question;
 import com.goodshop.demo.repository.product.ProductRepository;
+import com.goodshop.demo.service.ProductService;
 import com.goodshop.demo.service.QuestionService;
 import lombok.RequiredArgsConstructor;
 import oracle.jdbc.proxy.annotation.Post;
@@ -21,6 +22,7 @@ public class QuestionContoller {
 
     private final ProductRepository productRepository;
     private final QuestionService questionService;
+    private final ProductService productService;
 
     @GetMapping("/item/qna")
     public String questionForm(Model model) {
@@ -34,7 +36,7 @@ public class QuestionContoller {
     }
 
     @PostMapping("/item/qna")
-    public String question_do(@ModelAttribute @Valid  QuestionForm questionForm, BindingResult bindingResult, RedirectAttributes redirectAttributes){
+    public String question_do(@ModelAttribute @Valid QuestionForm questionForm, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
         questionService.saveQuestion(questionForm);
 
@@ -42,7 +44,7 @@ public class QuestionContoller {
     }
 
     @GetMapping("/item/qnaList/{user_id}")
-    public String q_List(@PathVariable(name = "user_id") String user_id, Model model){
+    public String q_List(@PathVariable(name = "user_id") String user_id, Model model) {
 
         List<Question> q_list = questionService.findList(user_id);
 
@@ -52,7 +54,7 @@ public class QuestionContoller {
     }
 
     @GetMapping("/item/qna/{q_code}")
-    public String question(@PathVariable(name = "q_code") Long q_code, Model model){
+    public String question(@PathVariable(name = "q_code") Long q_code, Model model) {
 
         Question question = questionService.findOne(q_code);
 
@@ -62,7 +64,7 @@ public class QuestionContoller {
     }
 
     @GetMapping("/item/qna/{q_code}/update")
-    public String q_update(@PathVariable(name = "q_code") Long q_code ,Model model){
+    public String q_update(@PathVariable(name = "q_code") Long q_code, Model model) {
 
         Question q = questionService.findOne(q_code);
 
@@ -80,7 +82,7 @@ public class QuestionContoller {
     }
 
     @PostMapping("/item/qna/{q_code}/update")
-    public String q_updateDo(@Valid QuestionForm questionForm, @PathVariable Long q_code){
+    public String q_updateDo(@Valid QuestionForm questionForm, @PathVariable Long q_code) {
 
         questionService.updateQ(questionForm);
 
@@ -88,12 +90,30 @@ public class QuestionContoller {
     }
 
     @GetMapping("/item/qna/{q_code}/del/{user_id}")
-    public String delQ(@PathVariable Long q_code, @PathVariable String user_id){
+    public String delQ(@PathVariable Long q_code, @PathVariable String user_id) {
 
         Question question = questionService.findOne(q_code);
         questionService.delQ(q_code);
 
 
         return "redirect:/item/qnaList/" + user_id;
+    }
+
+    @GetMapping("/item/qna/{pdct_code}/list")
+    public String qList(@PathVariable Long pdct_code, Model model){
+
+        List<Question> questions = questionService.answerList(pdct_code);
+
+
+        model.addAttribute("aList", questions);
+
+        return "question/answerList";
+    }
+
+    @GetMapping("/item/qna/{pdct_code}/{q_code}")
+    public String answerForm(@PathVariable Long q_code, Model model){
+
+        model.addAttribute("question", questionService.findOne(q_code));
+        return  "question/answerForm";
     }
 }

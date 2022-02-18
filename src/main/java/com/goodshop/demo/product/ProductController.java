@@ -7,6 +7,7 @@ import com.goodshop.demo.domain.question.Question;
 import com.goodshop.demo.repository.product.ProductRepository;
 import com.goodshop.demo.service.ProductService;
 import com.goodshop.demo.service.QuestionService;
+import javafx.beans.binding.ObjectBinding;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -150,5 +152,20 @@ public class ProductController {
         return "redirect:/item/{pdct_code}";
     }
 
+    @GetMapping("/item/seller/{user_id}")
+    public String sellList(@PathVariable String user_id, Model model){
+
+        List<Product> products = productService.sellList(user_id);
+
+        List<Object> cnt = new ArrayList<>();
+
+        products.stream().forEach(q -> questionService.q_cnt(q.getPdct_code()));
+
+
+
+        model.addAttribute("sellList", products);
+        return "user/sellList";
+
+    }
 
 }

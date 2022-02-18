@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="layouts/layout :: layoutFragment(~{::main})" xmlns:th="https://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<main>
+  <div class="page-section">
+    <div class="container">
+      <h2 class="login text-center"><b>답변하기</b></h2>
+      <form action="">
+        <div class="row mb-3">
+
+          <div class="col-sm-5 login-id">
+            <input type="text" class="form-control" th:placeholder="${question.getQ_title()}" readonly>
+          </div>
+          <div class="col-sm-5 login-id">
+            <input type="text" class="form-control" th:placeholder="${question.getQ_content()}" readonly>
+          </div>
+          <div class="col-sm-5 login-id">
+            <input type="text" class="form-control" th:placeholder="${question.getProduct().getPdct_name()}" readonly>
+          </div>
+          <div class="col-sm-5 login-id">
+            <input type="text" class="form-control" th:value="${question.getQ_date()}" readonly>
+          </div>
+          <div class="col-sm-5 login-id">
+            <input type="text" class="form-control" placeholder="답변 내용">
+          </div>
+          <div class="col-sm-5 login-id float-right">
+            <a th:href="@{/item/qna/{q_code}/update(q_code = ${question.getId()})}" class="btn btn-primary">답변</a>
+            <a onclick="history.back()" class="btn btn-secondary">뒤로</a>
+          </div>
+
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+</main>

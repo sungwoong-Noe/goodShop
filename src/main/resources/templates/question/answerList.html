@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html th:replace="layouts/layout :: layoutFragment(~{::main})" lang="ko" xmlns:th="https://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" >
+
+<main>
+    <div class="page-section mt-5">
+        <div class="container" >
+            <p style="font-size: xx-large">상품문의내역</p>
+            <div class="row align-items-center">
+                <table class="table">
+                    <tr>
+                        <td>제품이름</td>
+                        <th>문의제목</th>
+                        <th>등록일</th>
+                        <th>답변하기</th>
+                    </tr>
+                    <tr th:each="answer : ${aList}">
+                        <td th:text="${answer.getProduct().getPdct_name()}"></td>
+                        <td th:text="${answer.getQ_title()}"></td>
+                        <td th:text="${answer.getQ_date()}"></td>
+                        <td><a th:href="@{/item/qna/{pdct_code}/{q_code}(pdct_code=${answer.getProduct().getPdct_code()}, q_code=${answer.getId()})}" th:text="${q_cnt} +'개 문의내역'"></a></td>
+                        <td>
+                            <a  href="#"  class="btn-danger">주문취소</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script th:inline="javascript">
+        function orderCancel(order_id){
+            if (confirm("주문을 취소하시겠습니까?") == true){
+                var cancelForm = document.createElement("form");
+                cancelForm.setAttribute("method", "post");
+                cancelForm.setAttribute("action", "/orders/" + order_id + "/cancel");
+                document.body.appendChild(cancelForm);
+                cancelForm.submit();
+            }
+
+        }
+    </script>
+</main>

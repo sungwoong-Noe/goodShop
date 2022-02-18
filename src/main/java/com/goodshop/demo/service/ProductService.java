@@ -42,5 +42,7 @@ public class ProductService {
         return orderProducts;
     }
 
-    //
+    public List<Product> sellList(String user_id){
+        return productRepository.sellList(user_id);
+    }
 }

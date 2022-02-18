@@ -66,5 +66,13 @@ public class QuestionService {
         questionRepository.deleteOne(q_code);
     }
 
+    public List<Question> answerList(Long pdct_code){
+        return questionRepository.answerList(pdct_code);
+    }
+
+    public int q_cnt(Long pdct_code){
+        return questionRepository.q_cnt(pdct_code);
+    }
+
 
 }

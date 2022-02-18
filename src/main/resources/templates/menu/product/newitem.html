@@ -34,7 +34,7 @@
                         <p th:if="${#fields.hasErrors('pdct_detail')}" th:errors="*{pdct_detail}">Incorrect date</p>
                     </div>
                     <div class="col-sm-5 login-id">
-                        <input type="text" name="seller" class="form-control" th:value="${session.loginUser.getUser_name()}" th:placeholder="판매자" readonly="true">
+                        <input type="text" name="seller" class="form-control" th:value="${session.loginUser.getUser_id()}" th:placeholder="판매자" readonly="true">
                     </div>
                     <div class="col-sm-5 login-id">
                         <button class="btn btn-primary col-sm-12" type="submit">제출</button>

@@ -36,4 +36,12 @@ public class ProductRepository {
         return em.createQuery("select p from Product p", Product.class)
                 .getResultList();
     }
+
+    //판매 상품 조회
+    public List<Product> sellList(String user_id){
+        return em.createQuery("select p from Product p where p.seller=:user_id", Product.class)
+                .setParameter("user_id", user_id)
+                .getResultList();
+    }
+
 }

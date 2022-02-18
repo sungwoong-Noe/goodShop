@@ -55,5 +55,16 @@ public class QuestionRepository {
         em.remove(one);
     }
 
+    public List<Question> answerList(Long pdct_code){
+        return em.createQuery("select q from Question q where q.product.pdct_code =:pdct_code", Question.class)
+                .setParameter("pdct_code", pdct_code)
+                .getResultList();
+    }
+
+    public int q_cnt(Long pdct_code){
+        return em.createQuery("select q from Question q where q.product.pdct_code=:pdct_code", Question.class)
+                .setParameter("pdct_code", pdct_code)
+                .getResultList().size();
+    }
 
 }

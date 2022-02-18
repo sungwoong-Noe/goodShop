@@ -88,8 +88,8 @@
                     <ul style="list-style: none;">
                         <li th:text="'작성자: ' + ${question.getUser().user_id}" class="font-weight-bold"></li>
                         <li th:text="${question.getQ_date()}"></li>
-                        <li ><a href="javascript:questionHide()" th:text="'문의제목: ' + ${question.getQ_title()}"></a></li>
-                        <li th:text="'문의내용: ' + ${question.getQ_content()}" id="q_content" style="display: none"></li>
+                        <li ><a th:href="'javascript:questionHide('+${question.getId()} + ')'" th:text="'문의제목: ' + ${question.getQ_title()}"></a></li>
+                        <li th:text="'문의내용: ' + ${question.getQ_content()}" th:id="${question.getId()}" class="q_content" style="display: none"></li>
                     </ul>
                 </div>
 
@@ -242,12 +242,13 @@
     }
 
     //문의내용 접기 펼치기
-    function questionHide(){
+    function questionHide(q_code){
 
-        if(document.getElementById('q_content').style.display == 'none'){
-            document.getElementById('q_content').style.display = 'block';
+
+        if(document.getElementById(q_code).style.display == 'none'){
+            document.getElementById(q_code).style.display = 'block';
         }else{
-            document.getElementById('q_content').style.display = 'none';
+            document.getElementById(q_code).style.display = 'none';
         }
     }
 
